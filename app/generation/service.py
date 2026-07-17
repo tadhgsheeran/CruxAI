@@ -7,6 +7,13 @@ MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 
 class GenerationService:
     def __init__(self):
+        self.tokenizer = None
+        self.model = None
+
+    def _load_model(self) -> None:
+        if self.model is not None and self.tokenizer is not None:
+            return
+
         print(f"Loading generation model: {MODEL_NAME}")
 
         self.tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
@@ -25,6 +32,8 @@ class GenerationService:
         retrieved_results: list[dict],
         max_new_tokens: int = 250,
     ) -> str:
+        self._load_model()
+        
         context_sections = []
 
         for index, result in enumerate(retrieved_results, start=1):
@@ -100,7 +109,7 @@ class GenerationService:
         if citations_text and not any(
             citation in answer for citation in source_citations
         ):
-            answer = f"{answer}\n\nSources: {citations_text}"
+            answer = f"{answer}\n\nRetrieved sources: {citations_text}"
 
         return answer
 

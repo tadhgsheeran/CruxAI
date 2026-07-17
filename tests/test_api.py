@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
+from app.generation.service import generation_service
 
 client = TestClient(app)
 
@@ -148,7 +149,24 @@ def test_retrieve_rejects_invalid_top_k():
 
 # LLM test
     
-def test_ask_returns_grounded_answer():
+def test_ask_returns_grounded_answer(monkeypatch):
+    def fake_generate_answer(
+        query: str,
+        retrieved_results: list[dict],
+        max_new_tokens: int = 250,
+    ) -> str:
+        return (
+            "Your feet may cut loose because you are losing body tension. "
+            "Focus on keeping pressure through your feet and core.\n\n"
+            "Sources: [body_tension.md]"
+        )
+
+    monkeypatch.setattr(
+        generation_service,
+        "generate_answer",
+        fake_generate_answer,
+    )
+
     response = client.post(
         "/ask",
         json={
@@ -162,11 +180,10 @@ def test_ask_returns_grounded_answer():
     data = response.json()
 
     assert data["query"] == "Why do my feet cut loose on overhangs?"
-    assert isinstance(data["answer"], str)
-    assert len(data["answer"]) > 0
+    assert "body tension" in data["answer"].lower()
+    assert "[body_tension.md]" in data["answer"]
     assert len(data["sources"]) == 3
     assert "body_tension.md" in data["sources"]
-
 
 def test_ask_rejects_empty_query():
     response = client.post(

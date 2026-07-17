@@ -19,3 +19,19 @@ Classic protocols include 4x4s (four boulder problems climbed back to back four 
 ## Safety
 
 Power endurance training loads the fingers and elbows heavily under fatigue, which is when injuries most often occur. Warm up thoroughly before starting the intensive sets, and stop when technique breaks down significantly rather than pushing to complete failure. Antagonist work and adequate rest days between power endurance sessions are essential to avoid tendinopathy from accumulated stress.
+
+## Linking Moves Together
+
+A climber may be able to complete every move on a route individually but still fail when trying to link the entire sequence. This often indicates a power-endurance limitation rather than a lack of ability on any single move.
+
+As fatigue builds, grip strength, movement accuracy, body tension, and decision-making can all decline. Power-endurance training helps the climber continue performing difficult moves with limited rest.
+
+Useful methods include linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum-effort move.
+
+## Climbing Hard While Tired
+
+Power endurance is the ability to continue producing difficult climbing movements while fatigued. It is especially important for long boulders, sustained crux sequences, and routes with several hard moves close together.
+
+Workouts can include repeated boulders with controlled rest, short circuits on a spray wall, linked problems, and intervals that combine hard climbing with incomplete recovery.
+
+The workout should be difficult enough to create fatigue while still allowing reasonably good movement quality. Once technique breaks down severely, additional volume may become less useful.

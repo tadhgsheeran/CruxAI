@@ -1,9 +1,51 @@
-{"question":"How can I keep my feet from cutting on steep climbs?","relevant_sources":["body_tension.md"]}
-{"question":"What should I train for routes with small edges?","relevant_sources":["finger_strength.md"]}
-{"question":"How do I improve my deadpoint timing?","relevant_sources":["deadpoint_technique.md"]}
-{"question":"Why do my feet come off the wall on overhangs?","relevant_sources":["body_tension.md"]}
-{"question":"What exercises help with finger strength?","relevant_sources":["finger_strength.md"]}
-{"question":"How can I reach a hold dynamically without jumping wildly?","relevant_sources":["deadpoint_technique.md"]}
-{"question":"What should I do to keep tension through my core and feet?","relevant_sources":["body_tension.md"]}
-{"question":"How much recovery should I take between finger-strength sessions?","relevant_sources":["finger_strength.md","recovery.md","training_session_design.md"]}
-{"question":"What makes a controlled dynamic move successful?","relevant_sources":["deadpoint_technique.md"]}
+{"question":"How can I keep my feet from cutting loose on an overhang?","relevant_sources":["body_tension.md","overhang_technique.md"]}
+{"question":"What should I train to stay connected during long moves on steep terrain?","relevant_sources":["body_tension.md","overhang_technique.md"]}
+{"question":"Why do my hips swing away from the wall when I reach?","relevant_sources":["body_tension.md","footwork.md"]}
+
+{"question":"What should I train for routes with tiny edges?","relevant_sources":["finger_strength.md","crimping.md"]}
+{"question":"How can I become stronger on small crimps?","relevant_sources":["finger_strength.md","crimping.md"]}
+{"question":"What exercises improve my ability to hold narrow edges?","relevant_sources":["finger_strength.md","crimping.md"]}
+
+{"question":"How do I improve my timing on controlled dynamic moves?","relevant_sources":["deadpoint_technique.md"]}
+{"question":"How can I reach a distant hold without making a full jump?","relevant_sources":["deadpoint_technique.md"]}
+{"question":"Why do I keep overshooting holds when I move dynamically?","relevant_sources":["deadpoint_technique.md"]}
+
+{"question":"How should I actively pull with a heel hook?","relevant_sources":["heel_hooks.md"]}
+{"question":"Why does my heel hook keep slipping off the hold?","relevant_sources":["heel_hooks.md"]}
+{"question":"What muscles and drills help make heel hooks stronger?","relevant_sources":["heel_hooks.md"]}
+
+{"question":"How do I hold myself in place with one bent arm?","relevant_sources":["lock_offs.md"]}
+{"question":"What should I train for moves that require pausing with one hand?","relevant_sources":["lock_offs.md"]}
+{"question":"Why do I lose control when trying to reach from a lock-off?","relevant_sources":["lock_offs.md"]}
+
+{"question":"How can I make my foot placements more precise?","relevant_sources":["footwork.md"]}
+{"question":"Why do my feet slip even when the footholds are good?","relevant_sources":["footwork.md"]}
+{"question":"What drills can help me climb more quietly with my feet?","relevant_sources":["footwork.md"]}
+
+{"question":"How should I study a boulder before attempting it?","relevant_sources":["route_reading.md"]}
+{"question":"How can I predict the movement sequence before leaving the ground?","relevant_sources":["route_reading.md"]}
+{"question":"What should I look for while previewing a climbing route?","relevant_sources":["route_reading.md"]}
+
+{"question":"How should I change my climbing technique on an overhang?","relevant_sources":["overhang_technique.md","body_tension.md"]}
+{"question":"Why does steep climbing tire my arms so quickly?","relevant_sources":["overhang_technique.md","body_tension.md"]}
+{"question":"What techniques help conserve energy on steep terrain?","relevant_sources":["overhang_technique.md","footwork.md","body_tension.md"]}
+
+{"question":"How much rest should I take after a hard climbing session?","relevant_sources":["recovery.md","training_session_design.md"]}
+{"question":"What are signs that I have not recovered enough to train hard again?","relevant_sources":["recovery.md"]}
+{"question":"How should sleep and rest fit into climbing training?","relevant_sources":["recovery.md","training_session_design.md"]}
+
+{"question":"How do I train to sustain hard moves for an entire boulder?","relevant_sources":["power_endurance.md"]}
+{"question":"Why can I do individual moves but not link the whole route?","relevant_sources":["power_endurance.md"]}
+{"question":"What workouts improve my ability to climb hard while tired?","relevant_sources":["power_endurance.md","training_session_design.md"]}
+
+{"question":"How should I grip a small edge without overloading my fingers?","relevant_sources":["crimping.md","finger_strength.md"]}
+{"question":"What is the difference between an open hand and a crimp grip?","relevant_sources":["crimping.md"]}
+{"question":"How can I reduce injury risk when using full crimps?","relevant_sources":["crimping.md","recovery.md"]}
+
+{"question":"How do I stay on rounded holds with no positive edge?","relevant_sources":["slopers.md"]}
+{"question":"Why do slopers feel worse when my hips are far from the wall?","relevant_sources":["slopers.md","body_tension.md"]}
+{"question":"What technique helps create friction on sloping holds?","relevant_sources":["slopers.md","footwork.md"]}
+
+{"question":"How should I organize strength, technique, and endurance in one session?","relevant_sources":["training_session_design.md"]}
+{"question":"What order should I do warm-up, hard climbing, and conditioning?","relevant_sources":["training_session_design.md","recovery.md"]}
+{"question":"How can I avoid doing too much volume in a single workout?","relevant_sources":["training_session_design.md","recovery.md"]}

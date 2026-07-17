@@ -53,8 +53,20 @@ class RetrievalService:
             reverse=True,
         )
 
-        return scored_chunks[:top_k]
+        diverse_results = []
+        seen_sources = set()
 
+        for result in scored_chunks:
+            if result["source"] in seen_sources:
+                continue
+
+            diverse_results.append(result)
+            seen_sources.add(result["source"])
+
+            if len(diverse_results) == top_k:
+                break
+
+        return diverse_results
 
 retrieval_service = RetrievalService()
 

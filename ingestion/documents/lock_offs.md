@@ -19,3 +19,11 @@ Effective training includes weighted pull-up holds at various angles (top, 90 de
 ## Safety
 
 Lock offs place high load on the elbow tendons and shoulder rotator cuff. Elbow tendinopathy (medial and lateral) is common in climbers who train them heavily without antagonist work. Balance lock-off training with pushing exercises like dips and shoulder presses, and avoid training deep lock offs when already fatigued.
+
+## Pausing on One Arm
+
+Some climbing moves require the climber to pause while supporting the body with one bent arm before reaching with the other hand. This position is commonly called a lock-off.
+
+Training lock-offs can improve control during moves where the climber must stop, stabilize, and reach from one hand. Useful exercises include assisted one-arm holds, bent-arm isometric hangs, and controlled reaches from large holds.
+
+The goal is not only pulling strength. Good lock-offs also depend on shoulder stability, body tension, and using the feet to reduce the load on the supporting arm.

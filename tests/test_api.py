@@ -207,3 +207,21 @@ def test_ask_rejects_invalid_top_k():
     )
 
     assert response.status_code == 422
+    
+# unsupported quetsions test
+
+def test_ask_refuses_unsupported_question():
+    response = client.post(
+        "/ask",
+        json={
+            "query": "What is the weather at Yosemite tomorrow?",
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert "not have enough relevant information" in data["answer"].lower()
+    assert data["sources"] == []

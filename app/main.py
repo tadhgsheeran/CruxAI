@@ -13,6 +13,8 @@ from app.schemas import (
     RouteInput,
 )
 
+MIN_RETRIEVAL_SCORE = 0.35
+
 app = FastAPI(
     title="CruxAI API",
     description="API for predicting MoonBoard climbing grades.",
@@ -63,6 +65,16 @@ def ask_cruxai(request: AskRequest):
         query=request.query,
         top_k=request.top_k,
     )
+
+    if not results or results[0]["score"] < MIN_RETRIEVAL_SCORE:
+        return {
+            "query": request.query,
+            "answer": (
+                "I do not have enough relevant information in the "
+                "CruxAI knowledge base to answer that question."
+            ),
+            "sources": [],
+        }
 
     answer = generation_service.generate_answer(
         query=request.query,

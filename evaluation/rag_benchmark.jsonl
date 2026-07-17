@@ -1,0 +1,10 @@
+{"question":"Why do my feet cut loose on overhangs?","expected_sources":["body_tension.md","overhang_technique.md"],"expected_terms":["body tension"],"answerable":true}
+{"question":"Why are slopers difficult to hold?","expected_sources":["slopers.md"],"expected_terms":["friction"],"answerable":true}
+{"question":"How can I improve my heel hooks?","expected_sources":["heel_hooks.md"],"expected_terms":["heel","hamstring"],"answerable":true}
+{"question":"Why can I do every move but not link the whole boulder?","expected_sources":["power_endurance.md"],"expected_terms":["fatigue","power endurance"],"answerable":true}
+{"question":"How can I make my foot placements more precise?","expected_sources":["footwork.md"],"expected_terms":["foot"],"answerable":true}
+{"question":"What should I train for moves where I pause on one arm?","expected_sources":["lock_offs.md"],"expected_terms":["lock-off","one arm"],"answerable":true}
+{"question":"How do I stop overshooting holds during dynamic moves?","expected_sources":["deadpoint_technique.md"],"expected_terms":["timing","momentum"],"answerable":true}
+{"question":"How much sleep did Alex Honnold get last night?","expected_sources":[],"expected_terms":[],"answerable":false}
+{"question":"What is the weather at Yosemite tomorrow?","expected_sources":[],"expected_terms":[],"answerable":false}
+{"question":"Who won the most recent climbing World Cup event?","expected_sources":[],"expected_terms":[],"answerable":false}

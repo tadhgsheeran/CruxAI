@@ -7,3 +7,7 @@ Climbers should increase finger-loading volume gradually. Sudden increases in in
 Common training methods include submaximal edge hangs, repeaters, and carefully programmed maximum hangs for experienced climbers.
 
 Finger-strength work should be separated by adequate recovery time. Technique, body position, and foot pressure should still be considered before assuming that finger strength is the only limitation.
+
+## Small Edges and Crimps
+
+Routes with small edges, thin crimps, and poor positive holds often demand higher finger strength. Climbers may describe these holds as tiny edges, small crimps, or narrow ledges. Training for these routes can include progressive edge hangs, repeaters, and carefully programmed maximum hangs, depending on experience level.

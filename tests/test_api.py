@@ -145,3 +145,48 @@ def test_retrieve_rejects_invalid_top_k():
     )
 
     assert response.status_code == 422
+
+# LLM test
+    
+def test_ask_returns_grounded_answer():
+    response = client.post(
+        "/ask",
+        json={
+            "query": "Why do my feet cut loose on overhangs?",
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 200
+
+    data = response.json()
+
+    assert data["query"] == "Why do my feet cut loose on overhangs?"
+    assert isinstance(data["answer"], str)
+    assert len(data["answer"]) > 0
+    assert len(data["sources"]) == 3
+    assert "body_tension.md" in data["sources"]
+
+
+def test_ask_rejects_empty_query():
+    response = client.post(
+        "/ask",
+        json={
+            "query": "",
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_ask_rejects_invalid_top_k():
+    response = client.post(
+        "/ask",
+        json={
+            "query": "How do I improve my footwork?",
+            "top_k": 0,
+        },
+    )
+
+    assert response.status_code == 422

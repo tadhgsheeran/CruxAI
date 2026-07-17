@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 
 from app.model import predict_grade
+
+from app.generation.service import generation_service
 from app.retrieval.service import retrieval_service
 from app.schemas import (
+    AskRequest,
+    AskResponse,
     GradePrediction,
     RetrievalRequest,
     RetrievalResponse,
@@ -51,4 +55,24 @@ def retrieve_climbing_knowledge(request: RetrievalRequest):
     return {
         "query": request.query,
         "results": results,
+    }
+
+@app.post("/ask", response_model=AskResponse)
+def ask_cruxai(request: AskRequest):
+    results = retrieval_service.search(
+        query=request.query,
+        top_k=request.top_k,
+    )
+
+    answer = generation_service.generate_answer(
+        query=request.query,
+        retrieved_results=results,
+    )
+
+    sources = [result["source"] for result in results]
+
+    return {
+        "query": request.query,
+        "answer": answer,
+        "sources": sources,
     }

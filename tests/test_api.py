@@ -77,3 +77,71 @@ def test_rejects_wrong_number_of_columns():
     )
 
     assert response.status_code == 422
+    
+# retrieve testing
+
+def test_retrieve_returns_relevant_results():
+    response = client.post(
+        "/retrieve",
+        json={
+            "query": "How can I keep my feet on the wall on steep climbs?",
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 200
+
+    result = response.json()
+
+    assert result["query"] == (
+        "How can I keep my feet on the wall on steep climbs?"
+    )
+    assert len(result["results"]) == 3
+
+    top_result = result["results"][0]
+
+    assert top_result["source"] == "body_tension.md"
+    assert "text" in top_result
+    assert "chunk_id" in top_result
+    assert "score" in top_result
+
+
+def test_retrieve_respects_top_k():
+    response = client.post(
+        "/retrieve",
+        json={
+            "query": "How should I improve finger strength?",
+            "top_k": 1,
+        },
+    )
+
+    assert response.status_code == 200
+
+    result = response.json()
+
+    assert len(result["results"]) == 1
+    assert result["results"][0]["source"] == "finger_strength.md"
+
+
+def test_retrieve_rejects_empty_query():
+    response = client.post(
+        "/retrieve",
+        json={
+            "query": "",
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_retrieve_rejects_invalid_top_k():
+    response = client.post(
+        "/retrieve",
+        json={
+            "query": "How do I improve deadpoint timing?",
+            "top_k": 0,
+        },
+    )
+
+    assert response.status_code == 422

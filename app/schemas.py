@@ -29,3 +29,30 @@ class GradePrediction(BaseModel):
     rounded_grade: int
     formatted_grade: str
     model_version: str
+
+        
+        
+class RetrievalRequest(BaseModel):
+    query: str = Field(
+        ...,
+        min_length=1,
+        description="The climbing question to search for.",
+    )
+    top_k: int = Field(
+        default=3,
+        ge=1,
+        le=10,
+        description="Number of relevant chunks to return.",
+    )
+
+
+class RetrievalResult(BaseModel):
+    text: str
+    source: str
+    chunk_id: str
+    score: float
+
+
+class RetrievalResponse(BaseModel):
+    query: str
+    results: list[RetrievalResult]

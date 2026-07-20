@@ -11,6 +11,12 @@ from app.schemas import (
     RetrievalRequest,
     RetrievalResponse,
     RouteInput,
+    RouteDecisionResponse,
+    RouteRequest,
+)
+
+from app.orchestration.semantic_router import (
+    semantic_route_request,
 )
 
 MIN_RETRIEVAL_SCORE = 0.35
@@ -88,3 +94,20 @@ def ask_cruxai(request: AskRequest):
         "answer": answer,
         "sources": sources,
     }
+
+@app.post(
+    "/route",
+    response_model=RouteDecisionResponse,
+)
+def route_user_request(
+    request: RouteRequest,
+) -> RouteDecisionResponse:
+    decision = semantic_route_request(
+        request.question
+    )
+
+    return RouteDecisionResponse(
+        intent=decision.intent.value,
+        tools=decision.tools,
+        reason=decision.reason,
+    )

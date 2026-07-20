@@ -66,3 +66,19 @@ class AskResponse(BaseModel):
     query: str
     answer: str
     sources: list[str]
+        
+from pydantic import BaseModel, Field
+
+
+class RouteRequest(BaseModel):
+    question: str = Field(
+        ...,
+        min_length=1,
+        description="The user's climbing or route-analysis request.",
+    )
+
+
+class RouteDecisionResponse(BaseModel):
+    intent: str
+    tools: list[str]
+    reason: str

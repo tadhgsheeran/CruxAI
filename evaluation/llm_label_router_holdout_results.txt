@@ -1,0 +1,246 @@
+Loading generation model: Qwen/Qwen2.5-0.5B-Instruct
+======================================================================
+CRUXAI ROUTER EVALUATION
+======================================================================
+Examples: 36
+Intent accuracy: 0.278
+Tool-selection accuracy: 0.139
+
+PER-INTENT RESULTS
+----------------------------------------------------------------------
+GENERAL_CLIMBING_QUESTION      accuracy=0.000 precision=0.000 recall=0.000 f1=0.000
+ROUTE_GRADE_PREDICTION         accuracy=0.167 precision=0.250 recall=0.167 f1=0.200
+SIMILAR_ROUTE_SEARCH           accuracy=0.000 precision=0.000 recall=0.000 f1=0.000
+TRAINING_RECOMMENDATION        accuracy=0.167 precision=1.000 recall=0.167 f1=0.286
+MULTI_STEP_ANALYSIS            accuracy=1.000 precision=0.353 recall=1.000 f1=0.522
+UNSUPPORTED_REQUEST            accuracy=0.333 precision=0.154 recall=0.333 f1=0.211
+
+CONFUSION MATRIX
+----------------------------------------------------------------------
+Expected \ Predicted            GENERAL_  ROUTE_GR  SIMILAR_  TRAINING  MULTI_ST  UNSUPPOR
+GENERAL_CLIMBING_QUESTION              0         2         0         0         0         4
+ROUTE_GRADE_PREDICTION                 0         1         0         0         2         3
+SIMILAR_ROUTE_SEARCH                   0         0         0         0         5         1
+TRAINING_RECOMMENDATION                0         0         0         1         2         3
+MULTI_STEP_ANALYSIS                    0         0         0         0         6         0
+UNSUPPORTED_REQUEST                    1         1         0         0         2         2
+
+FAILURES
+----------------------------------------------------------------------
+Question: 'Would you assign a V grade to this sequence?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'V'
+----------------------------------------------------------------------
+Question: 'Does this hold configuration look closer to V4 or V7?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'What level would this board climb receive?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'LEVEL'
+----------------------------------------------------------------------
+Question: 'Can the model score this MoonBoard setup?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Would most climbers consider this a V8 problem?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'V8'
+----------------------------------------------------------------------
+Question: 'Retrieve the nearest routes to this hold configuration.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'What existing problems resemble this board setup?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['similar_route_search', 'training_recommendation']
+Router reason: The language model detected similar-route search and training advice.
+----------------------------------------------------------------------
+Question: 'Show the closest matches in the route database.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Which climbs overlap the most with these hold positions?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Search for problems that resemble this sequence.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Are there database entries with a layout like mine?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['similar_route_search']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'DATABASE'
+----------------------------------------------------------------------
+Question: 'Design a four-week plan for becoming better on crimps.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Give me a session focused on explosive movement.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'EXPLODING_MOTION'
+----------------------------------------------------------------------
+Question: 'How can I prepare physically for sustained steep climbing?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'Physical Preparation'
+----------------------------------------------------------------------
+Question: 'Suggest ways to fix my weak lock-off ability.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'Train locks'
+----------------------------------------------------------------------
+Question: 'I keep failing near the end of long problems. What should I work on?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Why do my feet cut loose when I climb on a roof?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['knowledge_retrieval']
+Predicted tools: ['grade_prediction']
+Router reason: The language model classified this as grade prediction.
+----------------------------------------------------------------------
+Question: 'When should a climber use an open-hand grip?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'Climbing terminology, technique, movement, or knowledge.'
+----------------------------------------------------------------------
+Question: 'Describe the purpose of flagging during a climb.'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'LABEL_FLAGGING'
+----------------------------------------------------------------------
+Question: 'Why is keeping the hips close to the wall helpful?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: 'Climbing terminology, technique, movement, or knowledge.'
+----------------------------------------------------------------------
+Question: 'What causes climbers to barn-door?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The label-based language-model router failed: No valid routing label found in output: "Climber's mistake."
+----------------------------------------------------------------------
+Question: 'When is a dynamic move more effective than a static move?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['knowledge_retrieval']
+Predicted tools: ['grade_prediction']
+Router reason: The language model classified this as grade prediction.
+----------------------------------------------------------------------
+Question: 'Estimate the level of this climb and suggest drills for it.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction', 'training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Find related board problems and build a preparation session.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search', 'training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Tell me the likely V grade, locate comparable problems, and suggest what to work on.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Would this suit someone climbing V4, and how could that person prepare?'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction', 'training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The language model detected grade prediction and similar-route search.
+----------------------------------------------------------------------
+Question: 'Evaluate this board setup, then show the nearest alternatives.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction', 'similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Help me write an email to my professor.'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: []
+Predicted tools: ['grade_prediction']
+Router reason: The language model classified this as grade prediction.
+----------------------------------------------------------------------
+Question: 'Which laptop is best for a computer science student?'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: []
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------
+Question: 'Summarize the causes of the American Civil War.'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: GENERAL_CLIMBING_QUESTION
+Expected tools: []
+Predicted tools: ['knowledge_retrieval']
+Router reason: The language model classified this as climbing knowledge.
+----------------------------------------------------------------------
+Question: 'How can I improve my basketball shooting form?'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: []
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The language model detected all three route tools.
+----------------------------------------------------------------------

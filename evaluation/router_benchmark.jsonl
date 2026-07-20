@@ -1,0 +1,53 @@
+{"question":"Can you predict the grade of this route?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"How difficult is this MoonBoard problem?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"What V grade would you give this climb?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Rate this route for difficulty.","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Is this route around V6?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Estimate the difficulty of these holds.","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Predict how hard this climb is.","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"What grade is this problem likely to be?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+
+{"question":"Find routes similar to this one.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Show me climbs that use similar holds.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Are there any routes like this problem?","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Search for MoonBoard routes with the same holds.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Compare this route with similar routes.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Which database routes most closely match this climb?","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Find problems with a similar hold layout.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Show me routes like the one I submitted.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+
+{"question":"What should I train to improve on overhangs?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"Build me a training session for lock-off strength.","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"How can I improve my finger strength?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"What exercises will help my body tension?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"I want to get stronger on steep climbs. What should I practice?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"What are my likely climbing weaknesses and how should I train them?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"Create a workout for power endurance.","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"How should I train to move from V5 to V7?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+
+{"question":"Explain how a heel hook works.","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"What is a deadpoint?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"How does body tension help on an overhang?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"What is the difference between a crimp and a sloper?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"Explain good climbing footwork.","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"Why do climbers use lock-offs?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"What does power endurance mean in climbing?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"How should I position my hips on steep terrain?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+
+{"question":"How difficult is this route and what should I train?","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","training_recommendation"]}
+{"question":"Predict this route's grade and find similar routes.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search"]}
+{"question":"Find routes like this and recommend exercises to prepare for them.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["similar_route_search","training_recommendation"]}
+{"question":"Rate this route, show me similar climbs, and tell me what to practice.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search","training_recommendation"]}
+{"question":"Is this route realistic for a V5 climber and what should they train?","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","training_recommendation"]}
+{"question":"How hard is this problem and are there similar routes?","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search"]}
+{"question":"Compare this route to similar climbs and create a workout for it.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["similar_route_search","training_recommendation"]}
+{"question":"Predict the difficulty and recommend a training session.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","training_recommendation"]}
+
+{"question":"What is the weather today?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Which stock should I buy?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Give me a pasta recipe.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Who will win the basketball game?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Recommend a movie for tonight.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Explain the latest political news.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"   ","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}

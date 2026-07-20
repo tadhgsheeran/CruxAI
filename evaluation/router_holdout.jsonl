@@ -1,0 +1,36 @@
+{"question":"Would you assign a V grade to this sequence?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Does this hold configuration look closer to V4 or V7?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Give me an estimate of this problem's level.","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"What level would this board climb receive?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Can the model score this MoonBoard setup?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Would most climbers consider this a V8 problem?","expected_intent":"ROUTE_GRADE_PREDICTION","expected_tools":["grade_prediction"]}
+{"question":"Retrieve the nearest routes to this hold configuration.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"What existing problems resemble this board setup?","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Show the closest matches in the route database.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Which climbs overlap the most with these hold positions?","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Search for problems that resemble this sequence.","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Are there database entries with a layout like mine?","expected_intent":"SIMILAR_ROUTE_SEARCH","expected_tools":["similar_route_search"]}
+{"question":"Design a four-week plan for becoming better on crimps.","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"What drills can address poor foot precision?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"Give me a session focused on explosive movement.","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"How can I prepare physically for sustained steep climbing?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"Suggest ways to fix my weak lock-off ability.","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"I keep failing near the end of long problems. What should I work on?","expected_intent":"TRAINING_RECOMMENDATION","expected_tools":["training_recommendation"]}
+{"question":"Why do my feet cut loose when I climb on a roof?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"When should a climber use an open-hand grip?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"Describe the purpose of flagging during a climb.","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"Why is keeping the hips close to the wall helpful?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"What causes climbers to barn-door?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"When is a dynamic move more effective than a static move?","expected_intent":"GENERAL_CLIMBING_QUESTION","expected_tools":["knowledge_retrieval"]}
+{"question":"Score this problem and retrieve its closest database matches.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search"]}
+{"question":"Estimate the level of this climb and suggest drills for it.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","training_recommendation"]}
+{"question":"Find related board problems and build a preparation session.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["similar_route_search","training_recommendation"]}
+{"question":"Tell me the likely V grade, locate comparable problems, and suggest what to work on.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search","training_recommendation"]}
+{"question":"Would this suit someone climbing V4, and how could that person prepare?","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","training_recommendation"]}
+{"question":"Evaluate this board setup, then show the nearest alternatives.","expected_intent":"MULTI_STEP_ANALYSIS","expected_tools":["grade_prediction","similar_route_search"]}
+{"question":"Solve the equation x squared minus five x plus six equals zero.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Help me write an email to my professor.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Where should I travel during spring break?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Which laptop is best for a computer science student?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"Summarize the causes of the American Civil War.","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}
+{"question":"How can I improve my basketball shooting form?","expected_intent":"UNSUPPORTED_REQUEST","expected_tools":[]}

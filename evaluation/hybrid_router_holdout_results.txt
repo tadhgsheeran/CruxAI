@@ -1,0 +1,182 @@
+======================================================================
+CRUXAI ROUTER EVALUATION
+======================================================================
+Examples: 36
+Intent accuracy: 0.417
+Tool-selection accuracy: 0.389
+
+PER-INTENT RESULTS
+----------------------------------------------------------------------
+GENERAL_CLIMBING_QUESTION      accuracy=0.500 precision=1.000 recall=0.500 f1=0.667
+ROUTE_GRADE_PREDICTION         accuracy=0.333 precision=0.500 recall=0.333 f1=0.400
+SIMILAR_ROUTE_SEARCH           accuracy=0.167 precision=0.500 recall=0.167 f1=0.250
+TRAINING_RECOMMENDATION        accuracy=0.167 precision=1.000 recall=0.167 f1=0.286
+MULTI_STEP_ANALYSIS            accuracy=0.333 precision=0.250 recall=0.333 f1=0.286
+UNSUPPORTED_REQUEST            accuracy=1.000 precision=0.333 recall=1.000 f1=0.500
+
+CONFUSION MATRIX
+----------------------------------------------------------------------
+Expected \ Predicted            GENERAL_  ROUTE_GR  SIMILAR_  TRAINING  MULTI_ST  UNSUPPOR
+GENERAL_CLIMBING_QUESTION              3         0         1         0         0         2
+ROUTE_GRADE_PREDICTION                 0         2         0         0         3         1
+SIMILAR_ROUTE_SEARCH                   0         1         1         0         2         2
+TRAINING_RECOMMENDATION                0         0         0         1         1         4
+MULTI_STEP_ANALYSIS                    0         1         0         0         2         3
+UNSUPPORTED_REQUEST                    0         0         0         0         0         6
+
+FAILURES
+----------------------------------------------------------------------
+Question: 'Does this hold configuration look closer to V4 or V7?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: "Give me an estimate of this problem's level."
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'What level would this board climb receive?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'Would most climbers consider this a V8 problem?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction']
+Predicted tools: ['grade_prediction', 'training_recommendation']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'What existing problems resemble this board setup?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction']
+Router reason: The request most strongly matches the grade_prediction capability.
+----------------------------------------------------------------------
+Question: 'Show the closest matches in the route database.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'Which climbs overlap the most with these hold positions?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'Search for problems that resemble this sequence.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['similar_route_search']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Are there database entries with a layout like mine?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['similar_route_search']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Design a four-week plan for becoming better on crimps.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'What drills can address poor foot precision?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Give me a session focused on explosive movement.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'How can I prepare physically for sustained steep climbing?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'I keep failing near the end of long problems. What should I work on?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['training_recommendation']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Why do my feet cut loose when I climb on a roof?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'When should a climber use an open-hand grip?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: SIMILAR_ROUTE_SEARCH
+Expected tools: ['knowledge_retrieval']
+Predicted tools: ['similar_route_search']
+Router reason: The request most strongly matches the similar_route_search capability.
+----------------------------------------------------------------------
+Question: 'When is a dynamic move more effective than a static move?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['knowledge_retrieval']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Score this problem and retrieve its closest database matches.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction', 'similar_route_search']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Estimate the level of this climb and suggest drills for it.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['grade_prediction', 'training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Router reason: The request contains multiple independently detected CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'Find related board problems and build a preparation session.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['similar_route_search', 'training_recommendation']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------
+Question: 'Tell me the likely V grade, locate comparable problems, and suggest what to work on.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Predicted tools: ['grade_prediction']
+Router reason: The request most strongly matches the grade_prediction capability.
+----------------------------------------------------------------------
+Question: 'Evaluate this board setup, then show the nearest alternatives.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: UNSUPPORTED_REQUEST
+Expected tools: ['grade_prediction', 'similar_route_search']
+Predicted tools: []
+Router reason: The router did not find enough evidence that the request belongs to a supported category.
+----------------------------------------------------------------------

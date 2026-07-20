@@ -225,3 +225,57 @@ def test_ask_refuses_unsupported_question():
 
     assert "not have enough relevant information" in data["answer"].lower()
     assert data["sources"] == []
+    
+def test_route_endpoint_returns_decision(
+    monkeypatch,
+):
+    from app.orchestration.router import (
+        Intent,
+        RoutingDecision,
+    )
+
+    def fake_semantic_route_request(question):
+        return RoutingDecision(
+            intent=Intent.TRAINING_RECOMMENDATION,
+            tools=["training_recommendation"],
+            reason="The request asks for training advice.",
+        )
+
+    monkeypatch.setattr(
+        "app.main.semantic_route_request",
+        fake_semantic_route_request,
+    )
+
+    response = client.post(
+        "/route",
+        json={
+            "question": (
+                "What drills should I use "
+                "for steep climbing?"
+            )
+        },
+    )
+
+    assert response.status_code == 200
+
+    body = response.json()
+
+    assert (
+        body["intent"]
+        == "TRAINING_RECOMMENDATION"
+    )
+
+    assert body["tools"] == [
+        "training_recommendation"
+    ]
+
+    assert body["reason"]
+
+
+def test_route_endpoint_rejects_empty_question():
+    response = client.post(
+        "/route",
+        json={"question": ""},
+    )
+
+    assert response.status_code == 422

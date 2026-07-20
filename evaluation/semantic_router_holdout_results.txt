@@ -1,0 +1,140 @@
+======================================================================
+CRUXAI ROUTER EVALUATION
+======================================================================
+Examples: 36
+Intent accuracy: 0.556
+Tool-selection accuracy: 0.556
+
+PER-INTENT RESULTS
+----------------------------------------------------------------------
+GENERAL_CLIMBING_QUESTION      accuracy=0.833 precision=0.714 recall=0.833 f1=0.769
+ROUTE_GRADE_PREDICTION         accuracy=0.833 precision=0.385 recall=0.833 f1=0.526
+SIMILAR_ROUTE_SEARCH           accuracy=0.667 precision=0.571 recall=0.667 f1=0.615
+TRAINING_RECOMMENDATION        accuracy=0.500 precision=0.750 recall=0.500 f1=0.600
+MULTI_STEP_ANALYSIS            accuracy=0.167 precision=0.333 recall=0.167 f1=0.222
+UNSUPPORTED_REQUEST            accuracy=0.333 precision=1.000 recall=0.333 f1=0.500
+
+CONFUSION MATRIX
+----------------------------------------------------------------------
+Expected \ Predicted            GENERAL_  ROUTE_GR  SIMILAR_  TRAINING  MULTI_ST  UNSUPPOR
+GENERAL_CLIMBING_QUESTION              5         1         0         0         0         0
+ROUTE_GRADE_PREDICTION                 0         5         1         0         0         0
+SIMILAR_ROUTE_SEARCH                   0         1         4         0         1         0
+TRAINING_RECOMMENDATION                2         0         0         3         1         0
+MULTI_STEP_ANALYSIS                    0         4         1         0         1         0
+UNSUPPORTED_REQUEST                    0         2         1         1         0         2
+
+FAILURES
+----------------------------------------------------------------------
+Question: 'Does this hold configuration look closer to V4 or V7?'
+Expected intent: ROUTE_GRADE_PREDICTION
+Predicted intent: SIMILAR_ROUTE_SEARCH
+Expected tools: ['grade_prediction']
+Predicted tools: ['similar_route_search']
+Router reason: The request is semantically closest to similar-route search questions.
+----------------------------------------------------------------------
+Question: 'What existing problems resemble this board setup?'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Search for problems that resemble this sequence.'
+Expected intent: SIMILAR_ROUTE_SEARCH
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['similar_route_search']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The request is semantically closest to questions requiring multiple CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'Design a four-week plan for becoming better on crimps.'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: GENERAL_CLIMBING_QUESTION
+Expected tools: ['training_recommendation']
+Predicted tools: ['knowledge_retrieval']
+Router reason: The request is semantically closest to general climbing knowledge questions.
+----------------------------------------------------------------------
+Question: 'What drills can address poor foot precision?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: GENERAL_CLIMBING_QUESTION
+Expected tools: ['training_recommendation']
+Predicted tools: ['knowledge_retrieval']
+Router reason: The request is semantically closest to general climbing knowledge questions.
+----------------------------------------------------------------------
+Question: 'I keep failing near the end of long problems. What should I work on?'
+Expected intent: TRAINING_RECOMMENDATION
+Predicted intent: MULTI_STEP_ANALYSIS
+Expected tools: ['training_recommendation']
+Predicted tools: ['grade_prediction', 'similar_route_search']
+Router reason: The request is semantically closest to questions requiring multiple CruxAI capabilities.
+----------------------------------------------------------------------
+Question: 'When is a dynamic move more effective than a static move?'
+Expected intent: GENERAL_CLIMBING_QUESTION
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['knowledge_retrieval']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Score this problem and retrieve its closest database matches.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: SIMILAR_ROUTE_SEARCH
+Expected tools: ['grade_prediction', 'similar_route_search']
+Predicted tools: ['similar_route_search']
+Router reason: The request is semantically closest to similar-route search questions.
+----------------------------------------------------------------------
+Question: 'Estimate the level of this climb and suggest drills for it.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['grade_prediction', 'training_recommendation']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Find related board problems and build a preparation session.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['similar_route_search', 'training_recommendation']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Tell me the likely V grade, locate comparable problems, and suggest what to work on.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['grade_prediction', 'similar_route_search', 'training_recommendation']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Evaluate this board setup, then show the nearest alternatives.'
+Expected intent: MULTI_STEP_ANALYSIS
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: ['grade_prediction', 'similar_route_search']
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Solve the equation x squared minus five x plus six equals zero.'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: []
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Help me write an email to my professor.'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: ROUTE_GRADE_PREDICTION
+Expected tools: []
+Predicted tools: ['grade_prediction']
+Router reason: The request is semantically closest to route grade-prediction questions.
+----------------------------------------------------------------------
+Question: 'Where should I travel during spring break?'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: SIMILAR_ROUTE_SEARCH
+Expected tools: []
+Predicted tools: ['similar_route_search']
+Router reason: The request is semantically closest to similar-route search questions.
+----------------------------------------------------------------------
+Question: 'How can I improve my basketball shooting form?'
+Expected intent: UNSUPPORTED_REQUEST
+Predicted intent: TRAINING_RECOMMENDATION
+Expected tools: []
+Predicted tools: ['training_recommendation']
+Router reason: The request is semantically closest to climbing training recommendation questions.
+----------------------------------------------------------------------

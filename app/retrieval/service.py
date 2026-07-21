@@ -1,12 +1,40 @@
 from ingestion.chunking import chunk_documents
-from ingestion.embeddings import embed_chunks, load_embedding_model
+from ingestion.embeddings import (
+    embed_chunks,
+    load_embedding_model,
+)
 
 
 class RetrievalService:
-    def __init__(self):
+    def __init__(
+        self,
+        chunk_size: int = 500,
+        overlap_paragraphs: int = 1,
+    ):
+        if chunk_size <= 0:
+            raise ValueError(
+                "chunk_size must be greater than 0."
+            )
+
+        if overlap_paragraphs < 0:
+            raise ValueError(
+                "overlap_paragraphs cannot be negative."
+            )
+
+        self.chunk_size = chunk_size
+        self.overlap_paragraphs = (
+            overlap_paragraphs
+        )
+
         self.model = load_embedding_model()
 
-        chunks = chunk_documents()
+        chunks = chunk_documents(
+            chunk_size=chunk_size,
+            overlap_paragraphs=(
+                overlap_paragraphs
+            ),
+        )
+
         self.embedded_chunks = embed_chunks(
             chunks,
             self.model,
@@ -18,10 +46,14 @@ class RetrievalService:
         top_k: int = 3,
     ) -> list[dict]:
         if not query.strip():
-            raise ValueError("Query cannot be empty.")
+            raise ValueError(
+                "Query cannot be empty."
+            )
 
         if top_k <= 0:
-            raise ValueError("top_k must be greater than 0.")
+            raise ValueError(
+                "top_k must be greater than 0."
+            )
 
         query_embedding = self.model.encode(
             query,
@@ -61,24 +93,14 @@ class RetrievalService:
                 continue
 
             diverse_results.append(result)
-            seen_sources.add(result["source"])
+            seen_sources.add(
+                result["source"]
+            )
 
             if len(diverse_results) == top_k:
                 break
 
         return diverse_results
 
+
 retrieval_service = RetrievalService()
-
-
-if __name__ == "__main__":
-    results = retrieval_service.search(
-        "How can I keep my feet on the wall while climbing an overhang?",
-        top_k=3,
-    )
-
-    for result in results:
-        print(f"Source: {result['source']}")
-        print(f"Score: {result['score']:.4f}")
-        print(result["text"])
-        print("-" * 60)

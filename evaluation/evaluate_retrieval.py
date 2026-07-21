@@ -1,8 +1,10 @@
 import json
 from pathlib import Path
 
-from app.retrieval.service import retrieval_service
-
+from app.retrieval.service import (
+    RetrievalService,
+    retrieval_service,
+)
 
 BENCHMARK_PATH = (
     Path(__file__).resolve().parent
@@ -26,9 +28,17 @@ def load_benchmark() -> list[dict]:
 def evaluate_retrieval(
     top_k: int = 3,
     verbose: bool = True,
+    service: RetrievalService | None = None,
 ) -> dict:
+
     examples = load_benchmark()
 
+    active_service = (
+        service
+        if service is not None
+        else retrieval_service
+    )
+    
     hits = 0
     reciprocal_ranks = []
 
@@ -43,7 +53,7 @@ def evaluate_retrieval(
             example["relevant_sources"]
         )
 
-        results = retrieval_service.search(
+        results = active_service.search(
             query=question,
             top_k=top_k,
         )

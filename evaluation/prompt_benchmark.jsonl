@@ -1,0 +1,8 @@
+{"question":"How can I stop my feet from cutting loose on overhangs?","relevant_sources":["body_tension.md","overhang_technique.md"],"expected_topics":["body tension","feet"],"should_abstain":false}
+{"question":"What should I train for small crimps?","relevant_sources":["crimping.md","finger_strength.md"],"expected_topics":["finger strength","crimp"],"should_abstain":false}
+{"question":"How does a heel hook help during a climb?","relevant_sources":["heel_hooks.md"],"expected_topics":["heel","pull"],"should_abstain":false}
+{"question":"How can I improve power endurance?","relevant_sources":["power_endurance.md"],"expected_topics":["power endurance","rest"],"should_abstain":false}
+{"question":"How should I recover after a hard climbing session?","relevant_sources":["recovery.md","training_session_design.md"],"expected_topics":["recovery","rest"],"should_abstain":false}
+{"question":"How can I improve my route reading?","relevant_sources":["route_reading.md"],"expected_topics":["sequence","route"],"should_abstain":false}
+{"question":"What is the weather at Yosemite tomorrow?","relevant_sources":[],"expected_topics":[],"should_abstain":true}
+{"question":"Which technology stock should I buy?","relevant_sources":[],"expected_topics":[],"should_abstain":true}

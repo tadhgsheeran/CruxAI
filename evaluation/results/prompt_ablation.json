@@ -1,0 +1,296 @@
+{
+  "experiment": "prompt_ablation",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "max_new_tokens": 100,
+  "retrieval_method": "hybrid",
+  "results": [
+    {
+      "prompt_version": "baseline",
+      "examples": 8,
+      "supported_examples": 6,
+      "unsupported_examples": 2,
+      "citation_presence_rate": 0.0,
+      "citation_validity_rate": 0.0,
+      "expected_source_citation_rate": 0.0,
+      "unsupported_abstention_rate": 0.0,
+      "supported_false_refusal_rate": 0.0,
+      "mean_topic_coverage": 0.9375,
+      "abstention_accuracy": 0.75,
+      "average_response_words": 66.75,
+      "average_latency_seconds": 3.724837614601711,
+      "examples_detail": [
+        {
+          "question": "How can I stop my feet from cutting loose on overhangs?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "body_tension.md",
+            "overhang_technique.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 60,
+          "latency_seconds": 4.667840624926612,
+          "answer": "To stop your feet from cutting loose on overhangs, focus on maintaining proper footwork and body tension. Use precise foot placements, engage toe and heel hooks effectively, and maintain a tight core. Keep hips close to the wall and use straight-arm hanging positions to resist the swing. This helps prevent cutting feet unnecessarily and keeps you stable on steep terrain."
+        },
+        {
+          "question": "What should I train for small crimps?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "crimping.md",
+            "finger_strength.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 75,
+          "latency_seconds": 3.906593875028193,
+          "answer": "To train for small crimps effectively, consider the following:\n\n1. Progressive edge hangs: Start with basic edge hangs and gradually increase difficulty.\n2. Repeaters: Use repeaters to improve your grip strength and control.\n3. Maximum hangs: Practice maximum hangs to develop your grip efficiency.\n4. Finger strength exercises: Focus on techniques such as half crimp and full crimp to enhance grip strength.\n5. Competition-specific training: Incorporate crimping into competitive climbing setups to improve performance in"
+        },
+        {
+          "question": "How does a heel hook help during a climb?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "heel_hooks.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 0.5,
+          "response_words": 73,
+          "latency_seconds": 3.76395995891653,
+          "answer": "A heel hook helps in maintaining proper body alignment and reducing the risk of cutting away from the wall during steep climbs. It ensures that the feet remain connected to the wall, preventing them from moving too far forward, which can increase the load on the arms and make subsequent movements more challenging. By training properly, climbers can improve their grip strength and overall stability, making them better suited for climbing steep terrain."
+        },
+        {
+          "question": "How can I improve power endurance?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "power_endurance.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 74,
+          "latency_seconds": 3.483994249952957,
+          "answer": "Improving power endurance involves gradually increasing your workload from lower intensities to higher ones, ensuring proper rest and recovery between sessions. Start with submaximal edge hangs, then move to repeaters, and finally, maximum hangs. Use progressive overload techniques like the finger-strength method to gradually build up your finger strength. Ensure proper technique, body positioning, and foot pressure throughout each exercise to prevent injuries. Regularly take breaks and allow your body to recover between workouts."
+        },
+        {
+          "question": "How should I recover after a hard climbing session?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "recovery.md",
+            "training_session_design.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 85,
+          "latency_seconds": 5.086157124955207,
+          "answer": "To recover after a hard climbing session, focus on proper rest and recovery techniques. Start by ensuring you have adequate sleep and hydration. After waking up from your session, take a few deep breaths and stretch to relax your muscles. Gradually increase your activity level as tolerated, aiming for a balanced mix of rest and effort. Incorporate light cardio exercises like walking or cycling to help maintain energy levels. Avoid pushing yourself beyond your limits, especially if you're new to climbing or have injuries. Regularly"
+        },
+        {
+          "question": "How can I improve my route reading?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "route_reading.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 72,
+          "latency_seconds": 4.589149167062715,
+          "answer": "Improving route reading involves several key strategies:\n\n1. **Linking Sections**: Practice linking different parts of a route together to ensure smooth transitions between moves.\n2. **Repeating Short Hard Circuits**: Regularly repeat challenging circuit setups to build muscle memory and confidence.\n3. **Practice Sequences**: Work on completing multiple moves within a shorter time frame to develop speed and efficiency.\n4. **Power-Endurance Training**: Incorporate techniques like linking sections, repeating circuits, and practicing sequences that"
+        },
+        {
+          "question": "What is the weather at Yosemite tomorrow?",
+          "should_abstain": true,
+          "abstained": false,
+          "expected_sources": [],
+          "citations": [],
+          "citation_present": null,
+          "citation_valid": null,
+          "expected_source_cited": null,
+          "topic_coverage": 1.0,
+          "response_words": 22,
+          "latency_seconds": 1.2887268329504877,
+          "answer": "The weather forecast for Yosemite tomorrow indicates that it will be sunny with temperatures ranging from 50\u00b0F to 70\u00b0F (10\u00b0C to 21\u00b0C)."
+        },
+        {
+          "question": "Which technology stock should I buy?",
+          "should_abstain": true,
+          "abstained": false,
+          "expected_sources": [],
+          "citations": [],
+          "citation_present": null,
+          "citation_valid": null,
+          "expected_source_cited": null,
+          "topic_coverage": 1.0,
+          "response_words": 73,
+          "latency_seconds": 3.012279083020985,
+          "answer": "To determine which technology stock to buy, consider your risk tolerance, investment goals, and time horizon. For beginners or those looking for a low-risk option, stocks like Apple (AAPL) or Microsoft (MSFT) might be suitable. For experienced investors or those seeking high returns, tech-heavy companies like Amazon (AMZN), Google (GOOGL), or Facebook (FB) could be more appropriate.\n\nAlways do thorough research before making any investment decisions. Consider factors such as company performance, market"
+        }
+      ]
+    },
+    {
+      "prompt_version": "evidence_grounded",
+      "examples": 8,
+      "supported_examples": 6,
+      "unsupported_examples": 2,
+      "citation_presence_rate": 0.0,
+      "citation_validity_rate": 0.0,
+      "expected_source_citation_rate": 0.0,
+      "unsupported_abstention_rate": 0.0,
+      "supported_false_refusal_rate": 0.0,
+      "mean_topic_coverage": 0.9375,
+      "abstention_accuracy": 0.75,
+      "average_response_words": 56.875,
+      "average_latency_seconds": 2.490423156268662,
+      "examples_detail": [
+        {
+          "question": "How can I stop my feet from cutting loose on overhangs?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "body_tension.md",
+            "overhang_technique.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 0.5,
+          "response_words": 37,
+          "latency_seconds": 1.7249435419216752,
+          "answer": "To stop your feet from cutting loose on overhangs, you should use precise feet, keep the hips close to the wall, and avoid letting them land noisily or using feet that don't connect properly with the wall."
+        },
+        {
+          "question": "What should I train for small crimps?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "crimping.md",
+            "finger_strength.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 29,
+          "latency_seconds": 1.5036803330294788,
+          "answer": "To train for small crimps, one should prioritize progressive edge hangs, repeaters, and carefully programmed maximum hangs. These techniques help develop finger strength necessary for gripping small edges effectively."
+        },
+        {
+          "question": "How does a heel hook help during a climb?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "heel_hooks.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 51,
+          "latency_seconds": 2.3778624159749597,
+          "answer": "A heel hook helps during a climb by pulling the body toward or around a hold, redistributing load from the fingers and arms into the posterior chain. It's especially useful on steep terrain, roofs, and ar\u00eates where staying attached to the wall requires full body tension from the upper body alone."
+        },
+        {
+          "question": "How can I improve power endurance?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "power_endurance.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 82,
+          "latency_seconds": 4.197459290968254,
+          "answer": "To improve your power endurance, focus on building muscle memory through consistent training and proper technique. Start with small edges and crimps, focusing on developing grip strength and control. Gradually increase the difficulty of these movements to challenge your muscles and build endurance. Incorporate rest periods to allow your muscles to recover and prevent injuries. Use progressive overload techniques like submaximal edge hangs, repeaters, and maximum hangs to maintain your fitness levels. Additionally, incorporate finger-strength work into your routine to further enhance"
+        },
+        {
+          "question": "How should I recover after a hard climbing session?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "recovery.md",
+            "training_session_design.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 73,
+          "latency_seconds": 3.2837715421337634,
+          "answer": "To recover after a hard climbing session, follow these steps:\n\n1. **Rest**: Allow adequate rest to your body. This includes taking breaks from strenuous activities like climbing.\n   \n2. **Cool Down**: Perform cool-down exercises to help reduce muscle tension and prevent injuries. Examples include stretching, foam rolling, and light cardio.\n\n3. **Hydrate**: Drink plenty of water to stay hydrated and aid in recovery.\n\n4. **Nutrition**: Eat a balanced diet rich in protein and carbohydrates"
+        },
+        {
+          "question": "How can I improve my route reading?",
+          "should_abstain": false,
+          "abstained": false,
+          "expected_sources": [
+            "route_reading.md"
+          ],
+          "citations": [],
+          "citation_present": false,
+          "citation_valid": false,
+          "expected_source_cited": false,
+          "topic_coverage": 1.0,
+          "response_words": 85,
+          "latency_seconds": 3.0027729999274015,
+          "answer": "To improve your route reading, start by focusing on building up your power-endurance through regular practice. Use techniques like linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum-effort move. Additionally, incorporate useful methods such as linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum-effort move. Remember to use your feet correctly and avoid common mistakes like adjusting the foot too quickly or using the inst"
+        },
+        {
+          "question": "What is the weather at Yosemite tomorrow?",
+          "should_abstain": true,
+          "abstained": false,
+          "expected_sources": [],
+          "citations": [],
+          "citation_present": null,
+          "citation_valid": null,
+          "expected_source_cited": null,
+          "topic_coverage": 1.0,
+          "response_words": 21,
+          "latency_seconds": 1.003342959098518,
+          "answer": "The weather forecast for Yosemite tomorrow indicates it will be sunny with temperatures ranging from 50\u00b0F to 70\u00b0F (10\u00b0C to 21\u00b0C)."
+        },
+        {
+          "question": "Which technology stock should I buy?",
+          "should_abstain": true,
+          "abstained": false,
+          "expected_sources": [],
+          "citations": [],
+          "citation_present": null,
+          "citation_valid": null,
+          "expected_source_cited": null,
+          "topic_coverage": 1.0,
+          "response_words": 77,
+          "latency_seconds": 2.829552167095244,
+          "answer": "To determine which technology stock you should buy, consider your investment goals, risk tolerance, and time horizon. For beginners or those looking for a low-risk option, consider stocks of companies with strong fundamentals and stable earnings. For experienced investors seeking high returns, consider tech stocks like Apple Inc., Amazon.com, or Microsoft Corporation.\n\nFor example, if you're interested in investing in technology stocks, you might want to look into companies like Apple (AAPL), Amazon (AMZN), or Microsoft (MSFT"
+        }
+      ]
+    }
+  ]
+}

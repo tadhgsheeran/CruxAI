@@ -1,6 +1,10 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from app.prompts.generation_prompts import (
+    build_user_prompt,
+    get_system_prompt,
+)
 
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 
@@ -31,6 +35,8 @@ class GenerationService:
         query: str,
         retrieved_results: list[dict],
         max_new_tokens: int = 250,
+        prompt_version: str = "evidence_grounded",
+        append_missing_citations: bool = True,
     ) -> str:
         self._load_model()
         
@@ -44,23 +50,13 @@ class GenerationService:
 
         context = "\n\n".join(context_sections)
 
-        system_message = (
-            "You are CruxAI, a climbing training assistant. "
-            "Answer the user's question using only the supplied context. "
-            "Do not invent route characteristics, hold types, movement types, "
-            "injury risks, or training needs that are not explicitly supported "
-            "by the context. A route's geometric span does not reveal its hold "
-            "type or wall angle. "
-            "When using information from a source, cite it using the source "
-            "filename in square brackets, such as [footwork.md]. "
-            "Give concrete recommendations supported by the retrieved passages. "
-            "If the context does not contain enough information, say so clearly."
+        system_message = get_system_prompt(
+            prompt_version
         )
 
-        user_message = (
-            f"Question:\n{query}\n\n"
-            f"Context:\n{context}\n\n"
-            "Provide a clear and concise answer."
+        user_message = build_user_prompt(
+            query=query,
+            context=context,
         )
 
         messages = [
@@ -110,10 +106,18 @@ class GenerationService:
 
         citations_text = " ".join(source_citations)
 
-        if citations_text and not any(
-            citation in answer for citation in source_citations
+        if (
+            append_missing_citations
+            and citations_text
+            and not any(
+                citation in answer
+                for citation in source_citations
+            )
         ):
-            answer = f"{answer}\n\nRetrieved sources: {citations_text}"
+            answer = (
+                f"{answer}\n\n"
+                f"Retrieved sources: {citations_text}"
+            )
 
         return answer
 

@@ -13,10 +13,18 @@ from app.schemas import (
     RouteInput,
     RouteDecisionResponse,
     RouteRequest,
+    AnalyzeRequest,
+    AnalyzeResponse,
 )
 
 from app.orchestration.semantic_router import (
     semantic_route_request,
+)
+
+from app.orchestration.workflow import run_workflow
+
+from app.orchestration.workflow_schemas import (
+    WorkflowRequest,
 )
 
 MIN_RETRIEVAL_SCORE = 0.35
@@ -110,4 +118,33 @@ def route_user_request(
         intent=decision.intent.value,
         tools=decision.tools,
         reason=decision.reason,
+    )
+
+@app.post(
+    "/analyze",
+    response_model=AnalyzeResponse,
+)
+async def analyze_request(
+    request: AnalyzeRequest,
+) -> AnalyzeResponse:
+    workflow_request = WorkflowRequest(
+        question=request.question,
+        route=request.route,
+        current_grade=request.current_grade,
+        target_grade=request.target_grade,
+        top_k=request.top_k,
+    )
+
+    result = run_workflow(
+        workflow_request,
+    )
+
+    return AnalyzeResponse(
+        intent=result.intent,
+        selected_tools=result.selected_tools,
+        success=result.success,
+        tool_results=result.tool_results,
+        final_answer=result.final_answer,
+        errors=result.errors,
+        metadata=result.metadata,
     )

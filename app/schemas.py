@@ -82,3 +82,52 @@ class RouteDecisionResponse(BaseModel):
     intent: str
     tools: list[str]
     reason: str
+
+from typing import Any
+
+from pydantic import BaseModel, Field
+
+from app.tools.schemas import ToolResult
+
+
+class AnalyzeRequest(BaseModel):
+    question: str = Field(
+        ...,
+        min_length=1,
+        description="The user's climbing or route-analysis request.",
+    )
+
+    route: list[list[int | float]] | None = None
+
+    current_grade: int | None = Field(
+        default=None,
+        ge=0,
+    )
+
+    target_grade: int | None = Field(
+        default=None,
+        ge=0,
+    )
+
+    top_k: int = Field(
+        default=3,
+        ge=1,
+        le=10,
+    )
+
+
+class AnalyzeResponse(BaseModel):
+    intent: str
+    selected_tools: list[str]
+    success: bool
+
+    tool_results: dict[str, ToolResult]
+
+    final_answer: str | None = None
+    errors: list[str] = Field(
+        default_factory=list,
+    )
+
+    metadata: dict[str, Any] = Field(
+        default_factory=dict,
+    )

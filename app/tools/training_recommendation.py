@@ -7,9 +7,10 @@ def build_training_query(
     question: str,
     current_grade: int | None = None,
     target_grade: int | None = None,
+    difficulty_factors: list[str] | None = None,
 ) -> str:
     """
-    Add optional climber context to the retrieval query.
+    Add optional climber and route context to the retrieval query.
     """
     query_parts = [question.strip()]
 
@@ -23,6 +24,16 @@ def build_training_query(
             f"The climber wants to progress toward V{target_grade}."
         )
 
+    if difficulty_factors:
+        factor_text = "; ".join(
+            difficulty_factors
+        )
+
+        query_parts.append(
+            "The route difficulty analysis identified: "
+            f"{factor_text}"
+        )
+
     return " ".join(query_parts)
 
 
@@ -30,6 +41,8 @@ def training_recommendation_tool(
     question: str,
     current_grade: int | None = None,
     target_grade: int | None = None,
+    difficulty_factors: list[str] | None = None,
+    factor_training_recommendations: list[dict] | None = None,
     top_k: int = 3,
 ) -> ToolResult:
     """
@@ -60,8 +73,28 @@ def training_recommendation_tool(
             question=question,
             current_grade=current_grade,
             target_grade=target_grade,
+            difficulty_factors=difficulty_factors,
         )
 
+        if factor_training_recommendations:
+            grounded_context = []
+
+            for item in factor_training_recommendations:
+                methods = ", ".join(
+                    item.get("methods", [])
+                )
+
+                grounded_context.append(
+                    f"Training focus: {item.get('focus')}. "
+                    f"Reason: {item.get('reason')} "
+                    f"Suggested methods: {methods}."
+                )
+
+            retrieval_query += (
+                " Grounded route-specific training guidance: "
+                + " ".join(grounded_context)
+            )
+        
         retrieved_results = retrieval_service.search(
             query=retrieval_query,
             top_k=top_k,
@@ -70,6 +103,7 @@ def training_recommendation_tool(
         recommendation = generation_service.generate_answer(
             query=retrieval_query,
             retrieved_results=retrieved_results,
+            max_new_tokens=160,
         )
 
         sources = [
@@ -94,6 +128,12 @@ def training_recommendation_tool(
                 "retrieval_query": retrieval_query,
                 "current_grade": current_grade,
                 "target_grade": target_grade,
+                "difficulty_factors": (
+                    difficulty_factors or []
+                ),
+                "factor_training_recommendations": (
+                    factor_training_recommendations or []
+                ),
                 "recommendation": recommendation,
                 "result_count": len(retrieved_results),
             },
@@ -112,6 +152,7 @@ def training_recommendation_tool(
                 "question": question,
                 "current_grade": current_grade,
                 "target_grade": target_grade,
+                "difficulty_factors": difficulty_factors or [],
                 "top_k": top_k,
             },
             error=str(exc),
@@ -129,6 +170,7 @@ def training_recommendation_tool(
                 "question": question,
                 "current_grade": current_grade,
                 "target_grade": target_grade,
+                "difficulty_factors": difficulty_factors or [],
                 "top_k": top_k,
             },
             error=str(exc),

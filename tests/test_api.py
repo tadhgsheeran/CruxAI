@@ -279,3 +279,173 @@ def test_route_endpoint_rejects_empty_question():
     )
 
     assert response.status_code == 422
+    
+def test_analyze_endpoint_executes_workflow(
+    monkeypatch,
+):
+    from app.orchestration.workflow_schemas import (
+        WorkflowResponse,
+    )
+    from app.tools.schemas import ToolResult
+
+    def fake_run_workflow(request):
+        return WorkflowResponse(
+            intent="MULTI_STEP_ANALYSIS",
+            selected_tools=[
+                "grade_prediction",
+                "similar_route_search",
+            ],
+            success=True,
+            tool_results={
+                "grade_prediction": ToolResult(
+                    tool="grade_prediction",
+                    success=True,
+                    summary="Predicted V6.",
+                    data={
+                        "formatted_grade": "V6",
+                    },
+                ),
+                "similar_route_search": ToolResult(
+                    tool="similar_route_search",
+                    success=True,
+                    summary="Found similar routes.",
+                    data={
+                        "matches": [],
+                    },
+                ),
+            },
+            final_answer=None,
+            errors=[],
+            metadata={
+                "tools_attempted": 2,
+                "tools_succeeded": 2,
+            },
+        )
+
+    monkeypatch.setattr(
+        "app.main.run_workflow",
+        fake_run_workflow,
+    )
+
+    response = client.post(
+        "/analyze",
+        json={
+            "question": (
+                "Predict this route grade "
+                "and find similar routes."
+            ),
+            "route": [
+                [0] * 11
+                for _ in range(18)
+            ],
+            "top_k": 3,
+        },
+    )
+
+    assert response.status_code == 200
+
+    body = response.json()
+
+    assert body["success"] is True
+    assert body["intent"] == "MULTI_STEP_ANALYSIS"
+
+    assert body["selected_tools"] == [
+        "grade_prediction",
+        "similar_route_search",
+    ]
+
+    assert (
+        body["tool_results"]
+        ["grade_prediction"]
+        ["data"]
+        ["formatted_grade"]
+        == "V6"
+    )
+
+    assert body["metadata"]["tools_attempted"] == 2
+
+
+def test_analyze_endpoint_accepts_training_context(
+    monkeypatch,
+):
+    from app.orchestration.workflow_schemas import (
+        WorkflowResponse,
+    )
+
+    captured_request = {}
+
+    def fake_run_workflow(request):
+        captured_request["request"] = request
+
+        return WorkflowResponse(
+            intent="TRAINING_RECOMMENDATION",
+            selected_tools=[
+                "training_recommendation"
+            ],
+            success=True,
+            tool_results={},
+            final_answer=None,
+            errors=[],
+            metadata={},
+        )
+
+    monkeypatch.setattr(
+        "app.main.run_workflow",
+        fake_run_workflow,
+    )
+
+    response = client.post(
+        "/analyze",
+        json={
+            "question": (
+                "What should I train "
+                "to reach V7?"
+            ),
+            "current_grade": 5,
+            "target_grade": 7,
+            "top_k": 4,
+        },
+    )
+
+    assert response.status_code == 200
+
+    workflow_request = captured_request["request"]
+
+    assert workflow_request.current_grade == 5
+    assert workflow_request.target_grade == 7
+    assert workflow_request.top_k == 4
+
+
+def test_analyze_endpoint_rejects_empty_question():
+    response = client.post(
+        "/analyze",
+        json={
+            "question": "",
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_analyze_endpoint_rejects_invalid_top_k():
+    response = client.post(
+        "/analyze",
+        json={
+            "question": "Explain body tension.",
+            "top_k": 0,
+        },
+    )
+
+    assert response.status_code == 422
+
+
+def test_analyze_endpoint_rejects_negative_grade():
+    response = client.post(
+        "/analyze",
+        json={
+            "question": "What should I train?",
+            "current_grade": -1,
+        },
+    )
+
+    assert response.status_code == 422

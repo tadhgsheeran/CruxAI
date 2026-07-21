@@ -115,3 +115,32 @@ def test_training_recommendation_rejects_negative_grade():
     assert result.success is False
     assert result.error is not None
     assert "negative" in result.error.lower()
+    
+def test_build_training_query_adds_difficulty_factors():
+    query = build_training_query(
+        question="What should I train?",
+        current_grade=5,
+        target_grade=7,
+        difficulty_factors=[
+            "The estimated average move distance is large.",
+            "The route has a wide horizontal span.",
+        ],
+    )
+
+    assert "average move distance" in query
+    assert "wide horizontal span" in query
+    
+def test_training_query_does_not_invent_hold_types():
+    query = build_training_query(
+        question="What should I train?",
+        current_grade=5,
+        target_grade=6,
+        difficulty_factors=[
+            "The route covers most of the board vertically.",
+            "The estimated average move distance is large.",
+        ],
+    )
+
+    assert "crimp" not in query.lower()
+    assert "sloper" not in query.lower()
+    assert "small edge" not in query.lower()

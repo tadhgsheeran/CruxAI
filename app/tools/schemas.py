@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 
 ToolName = Literal[
     "grade_prediction",
+    "difficulty_analysis",
     "knowledge_retrieval",
     "similar_route_search",
     "training_recommendation",

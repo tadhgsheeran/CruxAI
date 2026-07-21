@@ -8,6 +8,9 @@ from ingestion.embeddings import (
     load_embedding_model,
 )
 
+from app.retrieval.reranker import (
+    rerank_results,
+)
 
 SUPPORTED_RETRIEVAL_METHODS = {
     "dense",
@@ -277,6 +280,8 @@ class RetrievalService:
         query: str,
         top_k: int = 3,
         retrieval_method: str | None = None,
+        rerank: bool = False,
+        candidate_k: int = 8,
     ) -> list[dict]:
         if not query.strip():
             raise ValueError(
@@ -288,6 +293,17 @@ class RetrievalService:
                 "top_k must be greater than 0."
             )
 
+        if candidate_k <= 0:
+            raise ValueError(
+                "candidate_k must be greater than 0."
+            )
+
+        if rerank and candidate_k < top_k:
+            raise ValueError(
+                "candidate_k must be greater than or "
+                "equal to top_k when reranking."
+            )
+            
         active_method = (
             retrieval_method
             if retrieval_method is not None
@@ -405,17 +421,31 @@ class RetrievalService:
         diverse_results = []
         seen_sources = set()
 
+        result_limit = (
+            candidate_k
+            if rerank
+            else top_k
+        )
+
         for result in scored_chunks:
             if result["source"] in seen_sources:
                 continue
 
             diverse_results.append(result)
+
             seen_sources.add(
                 result["source"]
             )
 
-            if len(diverse_results) == top_k:
+            if len(diverse_results) == result_limit:
                 break
+
+        if rerank:
+            return rerank_results(
+                query=query,
+                results=diverse_results,
+                top_k=top_k,
+            )
 
         return diverse_results
 

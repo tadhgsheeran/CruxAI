@@ -1,0 +1,38 @@
+{
+  "experiment": "reranking_ablation",
+  "retrieval_method": "hybrid",
+  "hybrid_dense_weight": 0.9,
+  "chunk_size": 500,
+  "overlap_paragraphs": 2,
+  "top_k": 3,
+  "candidate_k": 8,
+  "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "results": [
+    {
+      "configuration": "reranking_off",
+      "rerank": false,
+      "candidate_k": null,
+      "top_k": 3,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.4444444444444443,
+      "recall_at_k": 0.9230769230769231,
+      "mean_reciprocal_rank": 0.9358974358974359,
+      "failure_count": 0,
+      "evaluation_seconds": 0.7149279590230435,
+      "average_query_seconds": 0.01833148612879599
+    },
+    {
+      "configuration": "reranking_on",
+      "rerank": true,
+      "candidate_k": 8,
+      "top_k": 3,
+      "hit_rate": 0.9743589743589743,
+      "precision_at_k": 0.41880341880341887,
+      "recall_at_k": 0.8846153846153846,
+      "mean_reciprocal_rank": 0.9572649572649572,
+      "failure_count": 1,
+      "evaluation_seconds": 44.411764041054994,
+      "average_query_seconds": 1.1387631805398717
+    }
+  ]
+}

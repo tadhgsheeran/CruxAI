@@ -29,6 +29,8 @@ def evaluate_retrieval(
     top_k: int = 3,
     verbose: bool = True,
     service: RetrievalService | None = None,
+    rerank: bool = False,
+    candidate_k: int = 8,
 ) -> dict:
 
     examples = load_benchmark()
@@ -56,6 +58,8 @@ def evaluate_retrieval(
         results = active_service.search(
             query=question,
             top_k=top_k,
+            rerank=rerank,
+            candidate_k=candidate_k,
         )
 
         retrieved_sources = [
@@ -178,6 +182,12 @@ def evaluate_retrieval(
     return {
         "questions": total,
         "top_k": top_k,
+        "rerank": rerank,
+        "candidate_k": (
+             candidate_k
+            if rerank
+            else None
+        ),
         "hits": hits,
         "hit_rate": hit_rate,
         "precision_at_k": (

@@ -1,0 +1,47 @@
+{
+  "experiment": "overlap_ablation",
+  "retrieval_method": "dense",
+  "chunk_size": 500,
+  "top_k": 3,
+  "results": [
+    {
+      "chunk_size": 500,
+      "overlap_paragraphs": 0,
+      "top_k": 3,
+      "chunk_count": 101,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.4273504273504273,
+      "recall_at_k": 0.9017094017094018,
+      "mean_reciprocal_rank": 0.9316239316239316,
+      "failure_count": 0,
+      "index_build_seconds": 3.415222750045359,
+      "evaluation_seconds": 0.6705547499004751
+    },
+    {
+      "chunk_size": 500,
+      "overlap_paragraphs": 1,
+      "top_k": 3,
+      "chunk_count": 116,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.41025641025641024,
+      "recall_at_k": 0.8717948717948718,
+      "mean_reciprocal_rank": 0.9273504273504273,
+      "failure_count": 0,
+      "index_build_seconds": 2.3212590829934925,
+      "evaluation_seconds": 0.5100005408748984
+    },
+    {
+      "chunk_size": 500,
+      "overlap_paragraphs": 2,
+      "top_k": 3,
+      "chunk_count": 123,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.4273504273504273,
+      "recall_at_k": 0.9017094017094018,
+      "mean_reciprocal_rank": 0.9358974358974359,
+      "failure_count": 0,
+      "index_build_seconds": 2.284247165778652,
+      "evaluation_seconds": 0.5261464170180261
+    }
+  ]
+}

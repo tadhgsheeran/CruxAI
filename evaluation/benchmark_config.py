@@ -13,7 +13,7 @@ class BenchmarkConfig:
     reranking_enabled: bool = False
 
     chunk_size: int = 500
-    chunk_overlap_paragraphs: int = 1
+    chunk_overlap_paragraphs: int = 2
     top_k: int = 3
 
     prompt_version: str = "evidence_grounded"

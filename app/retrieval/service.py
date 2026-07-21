@@ -9,7 +9,7 @@ class RetrievalService:
     def __init__(
         self,
         chunk_size: int = 500,
-        overlap_paragraphs: int = 1,
+        overlap_paragraphs: int = 2,
     ):
         if chunk_size <= 0:
             raise ValueError(

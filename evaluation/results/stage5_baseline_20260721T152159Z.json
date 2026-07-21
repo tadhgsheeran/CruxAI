@@ -1,0 +1,25 @@
+{
+  "experiment": {
+    "experiment_name": "stage5_baseline",
+    "retrieval_method": "dense",
+    "reranking_enabled": false,
+    "chunk_size": null,
+    "chunk_overlap": null,
+    "top_k": 3,
+    "prompt_version": "evidence_grounded",
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "quantization": "none",
+    "max_new_tokens": 100
+  },
+  "timestamp_utc": "2026-07-21T15:21:59.089410+00:00",
+  "environment": {
+    "python_version": "3.10.20",
+    "platform": "macOS-14.4.1-arm64-arm-64bit",
+    "processor": "arm"
+  },
+  "metrics": {
+    "benchmark_infrastructure": {
+      "initialization_seconds": 2.0815059542655945e-07
+    }
+  }
+}

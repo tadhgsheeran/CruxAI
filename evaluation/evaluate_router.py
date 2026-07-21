@@ -99,7 +99,9 @@ def calculate_precision_recall(
     return metrics
 
 
-def evaluate_router() -> None:
+def evaluate_router(
+    verbose: bool = True,
+) -> dict:
     benchmark = load_benchmark()
 
     expected_labels = []
@@ -117,7 +119,9 @@ def evaluate_router() -> None:
     for example in benchmark:
         question = example["question"]
         expected_intent = example["expected_intent"]
-        expected_tools = sorted(example["expected_tools"])
+        expected_tools = sorted(
+            example["expected_tools"]
+        )
 
         decision = route_request(question)
 
@@ -128,36 +132,70 @@ def evaluate_router() -> None:
         predicted_labels.append(predicted_intent)
 
         per_intent_total[expected_intent] += 1
-        confusion_matrix[expected_intent][predicted_intent] += 1
 
-        is_intent_correct = predicted_intent == expected_intent
-        is_tools_correct = predicted_tools == expected_tools
+        confusion_matrix[
+            expected_intent
+        ][predicted_intent] += 1
+
+        is_intent_correct = (
+            predicted_intent == expected_intent
+        )
+
+        is_tools_correct = (
+            predicted_tools == expected_tools
+        )
 
         if is_intent_correct:
             intent_correct += 1
-            per_intent_correct[expected_intent] += 1
+
+            per_intent_correct[
+                expected_intent
+            ] += 1
 
         if is_tools_correct:
             tools_correct += 1
 
-        if not is_intent_correct or not is_tools_correct:
+        if (
+            not is_intent_correct
+            or not is_tools_correct
+        ):
             failures.append(
                 {
                     "question": question,
-                    "expected_intent": expected_intent,
-                    "predicted_intent": predicted_intent,
-                    "expected_tools": expected_tools,
-                    "predicted_tools": predicted_tools,
+                    "expected_intent": (
+                        expected_intent
+                    ),
+                    "predicted_intent": (
+                        predicted_intent
+                    ),
+                    "expected_tools": (
+                        expected_tools
+                    ),
+                    "predicted_tools": (
+                        predicted_tools
+                    ),
                     "reason": decision.reason,
                 }
             )
 
     total = len(benchmark)
 
-    intent_accuracy = intent_correct / total if total else 0.0
-    tool_accuracy = tools_correct / total if total else 0.0
+    intent_accuracy = (
+        intent_correct / total
+        if total
+        else 0.0
+    )
 
-    intents = [intent.value for intent in Intent]
+    tool_accuracy = (
+        tools_correct / total
+        if total
+        else 0.0
+    )
+
+    intents = [
+        intent.value
+        for intent in Intent
+    ]
 
     class_metrics = calculate_precision_recall(
         expected_labels=expected_labels,
@@ -165,15 +203,7 @@ def evaluate_router() -> None:
         intents=intents,
     )
 
-    print("=" * 70)
-    print("CRUXAI ROUTER EVALUATION")
-    print("=" * 70)
-    print(f"Examples: {total}")
-    print(f"Intent accuracy: {intent_accuracy:.3f}")
-    print(f"Tool-selection accuracy: {tool_accuracy:.3f}")
-
-    print("\nPER-INTENT RESULTS")
-    print("-" * 70)
+    per_intent_results = {}
 
     for intent in intents:
         correct = per_intent_correct[intent]
@@ -185,66 +215,140 @@ def evaluate_router() -> None:
             else 0.0
         )
 
-        metrics = class_metrics[intent]
+        per_intent_results[intent] = {
+            "examples": intent_total,
+            "correct": correct,
+            "accuracy": accuracy,
+            "precision": (
+                class_metrics[intent]["precision"]
+            ),
+            "recall": (
+                class_metrics[intent]["recall"]
+            ),
+            "f1": class_metrics[intent]["f1"],
+        }
 
-        print(
-            f"{intent:30} "
-            f"accuracy={accuracy:.3f} "
-            f"precision={metrics['precision']:.3f} "
-            f"recall={metrics['recall']:.3f} "
-            f"f1={metrics['f1']:.3f}"
-        )
-
-    print("\nCONFUSION MATRIX")
-    print("-" * 70)
-
-    header = "Expected \\ Predicted"
-    print(f"{header:30}", end="")
-
-    for intent in intents:
-        print(f"{intent[:8]:>10}", end="")
-
-    print()
-
-    for expected_intent in intents:
-        print(f"{expected_intent:30}", end="")
-
-        for predicted_intent in intents:
-            count = confusion_matrix[
+    confusion_matrix_dict = {
+        expected_intent: {
+            predicted_intent: confusion_matrix[
                 expected_intent
             ][predicted_intent]
+            for predicted_intent in intents
+        }
+        for expected_intent in intents
+    }
 
-            print(f"{count:>10}", end="")
+    metrics = {
+        "examples": total,
+        "intent_correct": intent_correct,
+        "intent_accuracy": intent_accuracy,
+        "tool_selection_correct": tools_correct,
+        "tool_selection_accuracy": tool_accuracy,
+        "per_intent": per_intent_results,
+        "confusion_matrix": (
+            confusion_matrix_dict
+        ),
+        "failure_count": len(failures),
+        "failures": failures,
+    }
+
+    if verbose:
+        print("=" * 70)
+        print("CRUXAI ROUTER EVALUATION")
+        print("=" * 70)
+        print(f"Examples: {total}")
+        print(
+            "Intent accuracy:",
+            f"{intent_accuracy:.3f}",
+        )
+        print(
+            "Tool-selection accuracy:",
+            f"{tool_accuracy:.3f}",
+        )
+
+        print("\nPER-INTENT RESULTS")
+        print("-" * 70)
+
+        for intent in intents:
+            result = per_intent_results[intent]
+
+            print(
+                f"{intent:30} "
+                f"accuracy="
+                f"{result['accuracy']:.3f} "
+                f"precision="
+                f"{result['precision']:.3f} "
+                f"recall="
+                f"{result['recall']:.3f} "
+                f"f1={result['f1']:.3f}"
+            )
+
+        print("\nCONFUSION MATRIX")
+        print("-" * 70)
+
+        header = "Expected \\ Predicted"
+        print(f"{header:30}", end="")
+
+        for intent in intents:
+            print(
+                f"{intent[:8]:>10}",
+                end="",
+            )
 
         print()
 
-    print("\nFAILURES")
-    print("-" * 70)
+        for expected_intent in intents:
+            print(
+                f"{expected_intent:30}",
+                end="",
+            )
 
-    if not failures:
-        print("No routing failures.")
-    else:
-        for failure in failures:
-            print(f"Question: {failure['question']!r}")
-            print(
-                "Expected intent: "
-                f"{failure['expected_intent']}"
-            )
-            print(
-                "Predicted intent: "
-                f"{failure['predicted_intent']}"
-            )
-            print(
-                "Expected tools: "
-                f"{failure['expected_tools']}"
-            )
-            print(
-                "Predicted tools: "
-                f"{failure['predicted_tools']}"
-            )
-            print(f"Router reason: {failure['reason']}")
-            print("-" * 70)
+            for predicted_intent in intents:
+                count = confusion_matrix[
+                    expected_intent
+                ][predicted_intent]
 
+                print(
+                    f"{count:>10}",
+                    end="",
+                )
 
+            print()
+
+        print("\nFAILURES")
+        print("-" * 70)
+
+        if not failures:
+            print("No routing failures.")
+        else:
+            for failure in failures:
+                print(
+                    f"Question: "
+                    f"{failure['question']!r}"
+                )
+                print(
+                    "Expected intent: "
+                    f"{failure['expected_intent']}"
+                )
+                print(
+                    "Predicted intent: "
+                    f"{failure['predicted_intent']}"
+                )
+                print(
+                    "Expected tools: "
+                    f"{failure['expected_tools']}"
+                )
+                print(
+                    "Predicted tools: "
+                    f"{failure['predicted_tools']}"
+                )
+                print(
+                    "Router reason: "
+                    f"{failure['reason']}"
+                )
+                print("-" * 70)
+
+    return metrics           
+            
 if __name__ == "__main__":
     evaluate_router()

@@ -1,0 +1,147 @@
+{
+  "experiment": {
+    "experiment_name": "stage5_baseline",
+    "retrieval_method": "dense",
+    "reranking_enabled": false,
+    "chunk_size": 500,
+    "chunk_overlap_paragraphs": 1,
+    "top_k": 3,
+    "prompt_version": "evidence_grounded",
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "quantization": "none",
+    "max_new_tokens": 100
+  },
+  "timestamp_utc": "2026-07-21T15:50:06.043732+00:00",
+  "environment": {
+    "python_version": "3.10.20",
+    "platform": "macOS-14.4.1-arm64-arm-64bit",
+    "processor": "arm"
+  },
+  "metrics": {
+    "router": {
+      "examples": 48,
+      "intent_correct": 48,
+      "intent_accuracy": 1.0,
+      "tool_selection_correct": 48,
+      "tool_selection_accuracy": 1.0,
+      "per_intent": {
+        "GENERAL_CLIMBING_QUESTION": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "ROUTE_GRADE_PREDICTION": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "SIMILAR_ROUTE_SEARCH": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "TRAINING_RECOMMENDATION": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "MULTI_STEP_ANALYSIS": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "UNSUPPORTED_REQUEST": {
+          "examples": 8,
+          "correct": 8,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "confusion_matrix": {
+        "GENERAL_CLIMBING_QUESTION": {
+          "GENERAL_CLIMBING_QUESTION": 8,
+          "ROUTE_GRADE_PREDICTION": 0,
+          "SIMILAR_ROUTE_SEARCH": 0,
+          "TRAINING_RECOMMENDATION": 0,
+          "MULTI_STEP_ANALYSIS": 0,
+          "UNSUPPORTED_REQUEST": 0
+        },
+        "ROUTE_GRADE_PREDICTION": {
+          "GENERAL_CLIMBING_QUESTION": 0,
+          "ROUTE_GRADE_PREDICTION": 8,
+          "SIMILAR_ROUTE_SEARCH": 0,
+          "TRAINING_RECOMMENDATION": 0,
+          "MULTI_STEP_ANALYSIS": 0,
+          "UNSUPPORTED_REQUEST": 0
+        },
+        "SIMILAR_ROUTE_SEARCH": {
+          "GENERAL_CLIMBING_QUESTION": 0,
+          "ROUTE_GRADE_PREDICTION": 0,
+          "SIMILAR_ROUTE_SEARCH": 8,
+          "TRAINING_RECOMMENDATION": 0,
+          "MULTI_STEP_ANALYSIS": 0,
+          "UNSUPPORTED_REQUEST": 0
+        },
+        "TRAINING_RECOMMENDATION": {
+          "GENERAL_CLIMBING_QUESTION": 0,
+          "ROUTE_GRADE_PREDICTION": 0,
+          "SIMILAR_ROUTE_SEARCH": 0,
+          "TRAINING_RECOMMENDATION": 8,
+          "MULTI_STEP_ANALYSIS": 0,
+          "UNSUPPORTED_REQUEST": 0
+        },
+        "MULTI_STEP_ANALYSIS": {
+          "GENERAL_CLIMBING_QUESTION": 0,
+          "ROUTE_GRADE_PREDICTION": 0,
+          "SIMILAR_ROUTE_SEARCH": 0,
+          "TRAINING_RECOMMENDATION": 0,
+          "MULTI_STEP_ANALYSIS": 8,
+          "UNSUPPORTED_REQUEST": 0
+        },
+        "UNSUPPORTED_REQUEST": {
+          "GENERAL_CLIMBING_QUESTION": 0,
+          "ROUTE_GRADE_PREDICTION": 0,
+          "SIMILAR_ROUTE_SEARCH": 0,
+          "TRAINING_RECOMMENDATION": 0,
+          "MULTI_STEP_ANALYSIS": 0,
+          "UNSUPPORTED_REQUEST": 8
+        }
+      },
+      "failure_count": 0,
+      "failures": []
+    },
+    "retrieval": {
+      "questions": 39,
+      "top_k": 3,
+      "hits": 39,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.41025641025641024,
+      "recall_at_k": 0.8717948717948718,
+      "mean_reciprocal_rank": 0.9273504273504273,
+      "failure_count": 0,
+      "failures": []
+    },
+    "evaluation_latency": {
+      "router_seconds": 0.0013169168960303068,
+      "retrieval_seconds": 0.6823392079677433,
+      "total_seconds": 0.6836567078717053
+    }
+  }
+}

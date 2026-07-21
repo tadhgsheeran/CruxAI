@@ -1,0 +1,46 @@
+{
+  "experiment": "top_k_ablation",
+  "retrieval_method": "dense",
+  "results": [
+    {
+      "top_k": 1,
+      "hit_rate": 0.8717948717948718,
+      "precision_at_k": 0.8717948717948718,
+      "recall_at_k": 0.7008547008547008,
+      "mean_reciprocal_rank": 0.8717948717948718,
+      "failure_count": 5
+    },
+    {
+      "top_k": 2,
+      "hit_rate": 0.9487179487179487,
+      "precision_at_k": 0.5512820512820513,
+      "recall_at_k": 0.811965811965812,
+      "mean_reciprocal_rank": 0.9102564102564102,
+      "failure_count": 2
+    },
+    {
+      "top_k": 3,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.41025641025641024,
+      "recall_at_k": 0.8717948717948718,
+      "mean_reciprocal_rank": 0.9273504273504273,
+      "failure_count": 0
+    },
+    {
+      "top_k": 4,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.9230769230769231,
+      "mean_reciprocal_rank": 0.9273504273504273,
+      "failure_count": 0
+    },
+    {
+      "top_k": 5,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.2666666666666667,
+      "recall_at_k": 0.9230769230769231,
+      "mean_reciprocal_rank": 0.9273504273504273,
+      "failure_count": 0
+    }
+  ]
+}

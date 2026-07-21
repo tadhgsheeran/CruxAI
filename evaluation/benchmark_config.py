@@ -9,8 +9,9 @@ class BenchmarkConfig:
 
     experiment_name: str = "stage5_baseline"
 
-    retrieval_method: str = "dense"
+    retrieval_method: str = "hybrid"
     reranking_enabled: bool = False
+    hybrid_dense_weight: float = 0.90
 
     chunk_size: int = 500
     chunk_overlap_paragraphs: int = 2

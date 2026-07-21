@@ -1,0 +1,48 @@
+{
+  "experiment": "hybrid_weight_ablation",
+  "chunk_size": 500,
+  "overlap_paragraphs": 2,
+  "top_k": 3,
+  "results": [
+    {
+      "dense_weight": 0.25,
+      "keyword_weight": 0.75,
+      "hit_rate": 0.9743589743589743,
+      "precision_at_k": 0.3931623931623932,
+      "recall_at_k": 0.8461538461538461,
+      "mean_reciprocal_rank": 0.8888888888888888,
+      "failure_count": 1,
+      "evaluation_seconds": 0.7075772080570459
+    },
+    {
+      "dense_weight": 0.5,
+      "keyword_weight": 0.5,
+      "hit_rate": 0.9743589743589743,
+      "precision_at_k": 0.41025641025641024,
+      "recall_at_k": 0.8717948717948718,
+      "mean_reciprocal_rank": 0.9059829059829059,
+      "failure_count": 1,
+      "evaluation_seconds": 0.5232823330443352
+    },
+    {
+      "dense_weight": 0.75,
+      "keyword_weight": 0.25,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.4358974358974359,
+      "recall_at_k": 0.9102564102564102,
+      "mean_reciprocal_rank": 0.9316239316239316,
+      "failure_count": 0,
+      "evaluation_seconds": 0.5269895410165191
+    },
+    {
+      "dense_weight": 0.9,
+      "keyword_weight": 0.09999999999999998,
+      "hit_rate": 1.0,
+      "precision_at_k": 0.4444444444444443,
+      "recall_at_k": 0.9230769230769231,
+      "mean_reciprocal_rank": 0.9358974358974359,
+      "failure_count": 0,
+      "evaluation_seconds": 0.531296957982704
+    }
+  ]
+}

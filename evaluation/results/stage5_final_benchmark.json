@@ -1,0 +1,891 @@
+{
+  "experiment": "stage5_final_benchmark",
+  "created_at": "2026-07-21T18:30:26.381908+00:00",
+  "configuration": {
+    "retrieval_method": "hybrid",
+    "hybrid_dense_weight": 0.9,
+    "hybrid_keyword_weight": 0.1,
+    "chunk_size": 500,
+    "overlap_paragraphs": 2,
+    "top_k": 3,
+    "reranking_enabled": false,
+    "prompt_version": "evidence_grounded",
+    "generation_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "generation_dtype": "float32",
+    "generation_device": "cpu",
+    "max_new_tokens": 100
+  },
+  "router_metrics": {
+    "examples": 48,
+    "intent_correct": 30,
+    "intent_accuracy": 0.625,
+    "tool_selection_correct": 24,
+    "tool_selection_accuracy": 0.5,
+    "per_intent": {
+      "GENERAL_CLIMBING_QUESTION": {
+        "examples": 8,
+        "correct": 4,
+        "accuracy": 0.5,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666
+      },
+      "ROUTE_GRADE_PREDICTION": {
+        "examples": 8,
+        "correct": 3,
+        "accuracy": 0.375,
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5454545454545454
+      },
+      "SIMILAR_ROUTE_SEARCH": {
+        "examples": 8,
+        "correct": 2,
+        "accuracy": 0.25,
+        "precision": 0.6666666666666666,
+        "recall": 0.25,
+        "f1": 0.36363636363636365
+      },
+      "TRAINING_RECOMMENDATION": {
+        "examples": 8,
+        "correct": 5,
+        "accuracy": 0.625,
+        "precision": 0.7142857142857143,
+        "recall": 0.625,
+        "f1": 0.6666666666666666
+      },
+      "MULTI_STEP_ANALYSIS": {
+        "examples": 8,
+        "correct": 8,
+        "accuracy": 1.0,
+        "precision": 0.34782608695652173,
+        "recall": 1.0,
+        "f1": 0.5161290322580645
+      },
+      "UNSUPPORTED_REQUEST": {
+        "examples": 8,
+        "correct": 8,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "confusion_matrix": {
+      "GENERAL_CLIMBING_QUESTION": {
+        "GENERAL_CLIMBING_QUESTION": 4,
+        "ROUTE_GRADE_PREDICTION": 0,
+        "SIMILAR_ROUTE_SEARCH": 1,
+        "TRAINING_RECOMMENDATION": 2,
+        "MULTI_STEP_ANALYSIS": 1,
+        "UNSUPPORTED_REQUEST": 0
+      },
+      "ROUTE_GRADE_PREDICTION": {
+        "GENERAL_CLIMBING_QUESTION": 0,
+        "ROUTE_GRADE_PREDICTION": 3,
+        "SIMILAR_ROUTE_SEARCH": 0,
+        "TRAINING_RECOMMENDATION": 0,
+        "MULTI_STEP_ANALYSIS": 5,
+        "UNSUPPORTED_REQUEST": 0
+      },
+      "SIMILAR_ROUTE_SEARCH": {
+        "GENERAL_CLIMBING_QUESTION": 0,
+        "ROUTE_GRADE_PREDICTION": 0,
+        "SIMILAR_ROUTE_SEARCH": 2,
+        "TRAINING_RECOMMENDATION": 0,
+        "MULTI_STEP_ANALYSIS": 6,
+        "UNSUPPORTED_REQUEST": 0
+      },
+      "TRAINING_RECOMMENDATION": {
+        "GENERAL_CLIMBING_QUESTION": 0,
+        "ROUTE_GRADE_PREDICTION": 0,
+        "SIMILAR_ROUTE_SEARCH": 0,
+        "TRAINING_RECOMMENDATION": 5,
+        "MULTI_STEP_ANALYSIS": 3,
+        "UNSUPPORTED_REQUEST": 0
+      },
+      "MULTI_STEP_ANALYSIS": {
+        "GENERAL_CLIMBING_QUESTION": 0,
+        "ROUTE_GRADE_PREDICTION": 0,
+        "SIMILAR_ROUTE_SEARCH": 0,
+        "TRAINING_RECOMMENDATION": 0,
+        "MULTI_STEP_ANALYSIS": 8,
+        "UNSUPPORTED_REQUEST": 0
+      },
+      "UNSUPPORTED_REQUEST": {
+        "GENERAL_CLIMBING_QUESTION": 0,
+        "ROUTE_GRADE_PREDICTION": 0,
+        "SIMILAR_ROUTE_SEARCH": 0,
+        "TRAINING_RECOMMENDATION": 0,
+        "MULTI_STEP_ANALYSIS": 0,
+        "UNSUPPORTED_REQUEST": 8
+      }
+    },
+    "failure_count": 24,
+    "failures": [
+      {
+        "question": "Can you predict the grade of this route?",
+        "expected_intent": "ROUTE_GRADE_PREDICTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "How difficult is this MoonBoard problem?",
+        "expected_intent": "ROUTE_GRADE_PREDICTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "What V grade would you give this climb?",
+        "expected_intent": "ROUTE_GRADE_PREDICTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Rate this route for difficulty.",
+        "expected_intent": "ROUTE_GRADE_PREDICTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Predict how hard this climb is.",
+        "expected_intent": "ROUTE_GRADE_PREDICTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Find routes similar to this one.",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Show me climbs that use similar holds.",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Are there any routes like this problem?",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Compare this route with similar routes.",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Which database routes most closely match this climb?",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Show me routes like the one I submitted.",
+        "expected_intent": "SIMILAR_ROUTE_SEARCH",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "I want to get stronger on steep climbs. What should I practice?",
+        "expected_intent": "TRAINING_RECOMMENDATION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "What are my likely climbing weaknesses and how should I train them?",
+        "expected_intent": "TRAINING_RECOMMENDATION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "How should I train to move from V5 to V7?",
+        "expected_intent": "TRAINING_RECOMMENDATION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "How does body tension help on an overhang?",
+        "expected_intent": "GENERAL_CLIMBING_QUESTION",
+        "predicted_intent": "TRAINING_RECOMMENDATION",
+        "expected_tools": [
+          "knowledge_retrieval"
+        ],
+        "predicted_tools": [
+          "training_recommendation"
+        ],
+        "reason": "The request most strongly matches the training_recommendation capability."
+      },
+      {
+        "question": "Explain good climbing footwork.",
+        "expected_intent": "GENERAL_CLIMBING_QUESTION",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "knowledge_retrieval"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Why do climbers use lock-offs?",
+        "expected_intent": "GENERAL_CLIMBING_QUESTION",
+        "predicted_intent": "SIMILAR_ROUTE_SEARCH",
+        "expected_tools": [
+          "knowledge_retrieval"
+        ],
+        "predicted_tools": [
+          "similar_route_search"
+        ],
+        "reason": "The request most strongly matches the similar_route_search capability."
+      },
+      {
+        "question": "What does power endurance mean in climbing?",
+        "expected_intent": "GENERAL_CLIMBING_QUESTION",
+        "predicted_intent": "TRAINING_RECOMMENDATION",
+        "expected_tools": [
+          "knowledge_retrieval"
+        ],
+        "predicted_tools": [
+          "training_recommendation"
+        ],
+        "reason": "The request most strongly matches the training_recommendation capability."
+      },
+      {
+        "question": "How difficult is this route and what should I train?",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction",
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Predict this route's grade and find similar routes.",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction",
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Find routes like this and recommend exercises to prepare for them.",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Is this route realistic for a V5 climber and what should they train?",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction",
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "How hard is this problem and are there similar routes?",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "grade_prediction",
+          "similar_route_search"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      },
+      {
+        "question": "Compare this route to similar climbs and create a workout for it.",
+        "expected_intent": "MULTI_STEP_ANALYSIS",
+        "predicted_intent": "MULTI_STEP_ANALYSIS",
+        "expected_tools": [
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "predicted_tools": [
+          "grade_prediction",
+          "similar_route_search",
+          "training_recommendation"
+        ],
+        "reason": "The request contains multiple independently detected CruxAI capabilities."
+      }
+    ]
+  },
+  "retrieval_metrics": {
+    "questions": 39,
+    "top_k": 3,
+    "rerank": false,
+    "candidate_k": null,
+    "hits": 39,
+    "hit_rate": 1.0,
+    "precision_at_k": 0.4444444444444443,
+    "recall_at_k": 0.9230769230769231,
+    "mean_reciprocal_rank": 0.9358974358974359,
+    "failure_count": 0,
+    "failures": []
+  },
+  "generation_metrics": {
+    "prompt_version": "evidence_grounded",
+    "examples": 8,
+    "supported_examples": 6,
+    "unsupported_examples": 2,
+    "citation_presence_rate": 0.0,
+    "citation_validity_rate": 0.0,
+    "expected_source_citation_rate": 0.0,
+    "unsupported_abstention_rate": 0.0,
+    "supported_false_refusal_rate": 0.0,
+    "mean_topic_coverage": 0.9375,
+    "abstention_accuracy": 0.75,
+    "average_response_words": 56.875,
+    "average_latency_seconds": 2.5971986407530494,
+    "examples_detail": [
+      {
+        "question": "How can I stop my feet from cutting loose on overhangs?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "body_tension.md",
+          "overhang_technique.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 0.5,
+        "response_words": 37,
+        "latency_seconds": 3.447194250067696,
+        "answer": "To stop your feet from cutting loose on overhangs, you should use precise feet, keep the hips close to the wall, and avoid letting them land noisily or using feet that don't connect properly with the wall."
+      },
+      {
+        "question": "What should I train for small crimps?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "crimping.md",
+          "finger_strength.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 1.0,
+        "response_words": 29,
+        "latency_seconds": 1.039886999875307,
+        "answer": "To train for small crimps, one should prioritize progressive edge hangs, repeaters, and carefully programmed maximum hangs. These techniques help develop finger strength necessary for gripping small edges effectively."
+      },
+      {
+        "question": "How does a heel hook help during a climb?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "heel_hooks.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 1.0,
+        "response_words": 51,
+        "latency_seconds": 2.454868708970025,
+        "answer": "A heel hook helps during a climb by pulling the body toward or around a hold, redistributing load from the fingers and arms into the posterior chain. It's especially useful on steep terrain, roofs, and ar\u00eates where staying attached to the wall requires full body tension from the upper body alone."
+      },
+      {
+        "question": "How can I improve power endurance?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "power_endurance.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 1.0,
+        "response_words": 82,
+        "latency_seconds": 3.2254513748921454,
+        "answer": "To improve your power endurance, focus on building muscle memory through consistent training and proper technique. Start with small edges and crimps, focusing on developing grip strength and control. Gradually increase the difficulty of these movements to challenge your muscles and build endurance. Incorporate rest periods to allow your muscles to recover and prevent injuries. Use progressive overload techniques like submaximal edge hangs, repeaters, and maximum hangs to maintain your fitness levels. Additionally, incorporate finger-strength work into your routine to further enhance"
+      },
+      {
+        "question": "How should I recover after a hard climbing session?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "recovery.md",
+          "training_session_design.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 1.0,
+        "response_words": 73,
+        "latency_seconds": 3.272127208067104,
+        "answer": "To recover after a hard climbing session, follow these steps:\n\n1. **Rest**: Allow adequate rest to your body. This includes taking breaks from strenuous activities like climbing.\n   \n2. **Cool Down**: Perform cool-down exercises to help reduce muscle tension and prevent injuries. Examples include stretching, foam rolling, and light cardio.\n\n3. **Hydrate**: Drink plenty of water to stay hydrated and aid in recovery.\n\n4. **Nutrition**: Eat a balanced diet rich in protein and carbohydrates"
+      },
+      {
+        "question": "How can I improve my route reading?",
+        "should_abstain": false,
+        "abstained": false,
+        "expected_sources": [
+          "route_reading.md"
+        ],
+        "citations": [],
+        "citation_present": false,
+        "citation_valid": false,
+        "expected_source_cited": false,
+        "topic_coverage": 1.0,
+        "response_words": 85,
+        "latency_seconds": 3.193701625103131,
+        "answer": "To improve your route reading, start by focusing on building up your power-endurance through regular practice. Use techniques like linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum-effort move. Additionally, incorporate useful methods such as linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum-effort move. Remember to use your feet correctly and avoid common mistakes like adjusting the foot too quickly or using the inst"
+      },
+      {
+        "question": "What is the weather at Yosemite tomorrow?",
+        "should_abstain": true,
+        "abstained": false,
+        "expected_sources": [],
+        "citations": [],
+        "citation_present": null,
+        "citation_valid": null,
+        "expected_source_cited": null,
+        "topic_coverage": 1.0,
+        "response_words": 21,
+        "latency_seconds": 1.0602109171450138,
+        "answer": "The weather forecast for Yosemite tomorrow indicates it will be sunny with temperatures ranging from 50\u00b0F to 70\u00b0F (10\u00b0C to 21\u00b0C)."
+      },
+      {
+        "question": "Which technology stock should I buy?",
+        "should_abstain": true,
+        "abstained": false,
+        "expected_sources": [],
+        "citations": [],
+        "citation_present": null,
+        "citation_valid": null,
+        "expected_source_cited": null,
+        "topic_coverage": 1.0,
+        "response_words": 77,
+        "latency_seconds": 3.0841480419039726,
+        "answer": "To determine which technology stock you should buy, consider your investment goals, risk tolerance, and time horizon. For beginners or those looking for a low-risk option, consider stocks of companies with strong fundamentals and stable earnings. For experienced investors seeking high returns, consider tech stocks like Apple Inc., Amazon.com, or Microsoft Corporation.\n\nFor example, if you're interested in investing in technology stocks, you might want to look into companies like Apple (AAPL), Amazon (AMZN), or Microsoft (MSFT"
+      }
+    ]
+  },
+  "end_to_end_metrics": {
+    "warmup_runs_per_case": 1,
+    "measured_runs_per_case": 3,
+    "case_count": 5,
+    "route_case_included": true,
+    "total_requests": 15,
+    "successful_requests": 15,
+    "success_rate": 1.0,
+    "overall_http_latency": {
+      "requests": 15,
+      "mean_seconds": 1.496811638912186,
+      "median_seconds": 0.024288374930620193,
+      "p50_seconds": 0.024288374930620193,
+      "p95_seconds": 4.097361225029453,
+      "minimum_seconds": 0.009183957939967513,
+      "maximum_seconds": 4.302862500073388
+    },
+    "cases": [
+      {
+        "name": "knowledge_question",
+        "payload_summary": {
+          "question": "Explain how body tension helps on overhangs.",
+          "has_route": false,
+          "top_k": 3,
+          "current_grade": null
+        },
+        "status_codes": [
+          200,
+          200,
+          200
+        ],
+        "success_rate": 1.0,
+        "http_latency": {
+          "requests": 3,
+          "mean_seconds": 0.024459694356968004,
+          "median_seconds": 0.024288374930620193,
+          "p50_seconds": 0.024288374930620193,
+          "p95_seconds": 0.024921449390240012,
+          "minimum_seconds": 0.024098917143419385,
+          "maximum_seconds": 0.024991790996864438
+        },
+        "reported_workflow_latency": {
+          "requests": 3,
+          "mean_seconds": 0.023130875003213685,
+          "median_seconds": 0.023051250027492642,
+          "p50_seconds": 0.023051250027492642,
+          "p95_seconds": 0.023505374835804105,
+          "minimum_seconds": 0.022785541834309697,
+          "maximum_seconds": 0.023555833147838712
+        },
+        "observed_intents": [
+          "GENERAL_CLIMBING_QUESTION",
+          "GENERAL_CLIMBING_QUESTION",
+          "GENERAL_CLIMBING_QUESTION"
+        ],
+        "observed_tool_selections": [
+          [
+            "knowledge_retrieval"
+          ],
+          [
+            "knowledge_retrieval"
+          ],
+          [
+            "knowledge_retrieval"
+          ]
+        ]
+      },
+      {
+        "name": "training_question",
+        "payload_summary": {
+          "question": "What should I train to improve on steep routes?",
+          "has_route": false,
+          "top_k": 3,
+          "current_grade": 5
+        },
+        "status_codes": [
+          200,
+          200,
+          200
+        ],
+        "success_rate": 1.0,
+        "http_latency": {
+          "requests": 3,
+          "mean_seconds": 4.0934697916576015,
+          "median_seconds": 3.9924558750353754,
+          "p50_seconds": 3.9924558750353754,
+          "p95_seconds": 4.271821837569587,
+          "minimum_seconds": 3.985090999864042,
+          "maximum_seconds": 4.302862500073388
+        },
+        "reported_workflow_latency": {
+          "requests": 3,
+          "mean_seconds": 4.090754889029388,
+          "median_seconds": 3.9896317499224097,
+          "p50_seconds": 3.9896317499224097,
+          "p95_seconds": 4.26858809995465,
+          "minimum_seconds": 3.983049667207524,
+          "maximum_seconds": 4.299583249958232
+        },
+        "observed_intents": [
+          "TRAINING_RECOMMENDATION",
+          "TRAINING_RECOMMENDATION",
+          "TRAINING_RECOMMENDATION"
+        ],
+        "observed_tool_selections": [
+          [
+            "training_recommendation"
+          ],
+          [
+            "training_recommendation"
+          ],
+          [
+            "training_recommendation"
+          ]
+        ]
+      },
+      {
+        "name": "unsupported_question",
+        "payload_summary": {
+          "question": "What is the weather at Yosemite tomorrow?",
+          "has_route": false,
+          "top_k": 3,
+          "current_grade": null
+        },
+        "status_codes": [
+          200,
+          200,
+          200
+        ],
+        "success_rate": 1.0,
+        "http_latency": {
+          "requests": 3,
+          "mean_seconds": 0.009347110986709595,
+          "median_seconds": 0.009280917001888156,
+          "p50_seconds": 0.009280917001888156,
+          "p95_seconds": 0.00954690391663462,
+          "minimum_seconds": 0.009183957939967513,
+          "maximum_seconds": 0.009576458018273115
+        },
+        "reported_workflow_latency": {
+          "requests": 3,
+          "mean_seconds": 0.007942444023986658,
+          "median_seconds": 0.007861708058044314,
+          "p50_seconds": 0.007861708058044314,
+          "p95_seconds": 0.008124170592054725,
+          "minimum_seconds": 0.007812290918081999,
+          "maximum_seconds": 0.00815333309583366
+        },
+        "observed_intents": [
+          "UNSUPPORTED_REQUEST",
+          "UNSUPPORTED_REQUEST",
+          "UNSUPPORTED_REQUEST"
+        ],
+        "observed_tool_selections": []
+      },
+      {
+        "name": "grade_and_difficulty",
+        "payload_summary": {
+          "question": "How hard is this route and what makes it difficult?",
+          "has_route": true,
+          "top_k": 3,
+          "current_grade": null
+        },
+        "status_codes": [
+          200,
+          200,
+          200
+        ],
+        "success_rate": 1.0,
+        "http_latency": {
+          "requests": 3,
+          "mean_seconds": 0.016756847267970443,
+          "median_seconds": 0.016461499966681004,
+          "p50_seconds": 0.016461499966681004,
+          "p95_seconds": 0.017531075235456228,
+          "minimum_seconds": 0.016159124905243516,
+          "maximum_seconds": 0.01764991693198681
+        },
+        "reported_workflow_latency": {
+          "requests": 3,
+          "mean_seconds": 0.015297889010980725,
+          "median_seconds": 0.015024624997749925,
+          "p50_seconds": 0.015024624997749925,
+          "p95_seconds": 0.015923162503167988,
+          "minimum_seconds": 0.014846042031422257,
+          "maximum_seconds": 0.016023000003769994
+        },
+        "observed_intents": [
+          "ROUTE_GRADE_PREDICTION",
+          "ROUTE_GRADE_PREDICTION",
+          "ROUTE_GRADE_PREDICTION"
+        ],
+        "observed_tool_selections": [
+          [
+            "grade_prediction",
+            "difficulty_analysis"
+          ],
+          [
+            "grade_prediction",
+            "difficulty_analysis"
+          ],
+          [
+            "grade_prediction",
+            "difficulty_analysis"
+          ]
+        ]
+      },
+      {
+        "name": "full_multi_step",
+        "payload_summary": {
+          "question": "How hard is this route, what makes it difficult, and what should I train?",
+          "has_route": true,
+          "top_k": 3,
+          "current_grade": 5
+        },
+        "status_codes": [
+          200,
+          200,
+          200
+        ],
+        "success_rate": 1.0,
+        "http_latency": {
+          "requests": 3,
+          "mean_seconds": 3.3400247502916804,
+          "median_seconds": 3.0325326670426875,
+          "p50_seconds": 3.0325326670426875,
+          "p95_seconds": 3.911613591713831,
+          "minimum_seconds": 2.978252333821729,
+          "maximum_seconds": 4.0092892500106245
+        },
+        "reported_workflow_latency": {
+          "requests": 3,
+          "mean_seconds": 3.3379890972282737,
+          "median_seconds": 3.030679291812703,
+          "p50_seconds": 3.030679291812703,
+          "p95_seconds": 3.9091043038526547,
+          "minimum_seconds": 2.976580916903913,
+          "maximum_seconds": 4.006707082968205
+        },
+        "observed_intents": [
+          "MULTI_STEP_ANALYSIS",
+          "MULTI_STEP_ANALYSIS",
+          "MULTI_STEP_ANALYSIS"
+        ],
+        "observed_tool_selections": [
+          [
+            "grade_prediction",
+            "difficulty_analysis",
+            "training_recommendation"
+          ],
+          [
+            "grade_prediction",
+            "difficulty_analysis",
+            "training_recommendation"
+          ],
+          [
+            "grade_prediction",
+            "difficulty_analysis",
+            "training_recommendation"
+          ]
+        ]
+      }
+    ]
+  },
+  "selected_decisions": {
+    "retrieval": "Use 90/10 dense-heavy hybrid retrieval.",
+    "chunking": "Use 500-character chunks with two-paragraph overlap.",
+    "top_k": "Return three retrieved sources.",
+    "reranking": "Disable cross-encoder reranking because it reduced retrieval coverage and greatly increased latency.",
+    "prompt": "Use the evidence-grounded prompt, with router-based rejection and automatic source attachment enforced outside the LLM.",
+    "quantization": "Use FP32 on the tested Apple CPU because INT8 weight-only quantization reduced storage but substantially worsened latency and topic coverage."
+  }
+}

@@ -23,9 +23,8 @@ def test_health_endpoint():
     assert response.status_code == 200
     assert response.json() == {
         "status": "healthy",
-        "model_loaded": True,
+        "service": "CruxAI",
     }
-
 
 def test_predict_grade_with_real_route():
     route = np.load("data/example_test_route.npy")

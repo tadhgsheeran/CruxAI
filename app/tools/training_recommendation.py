@@ -2,6 +2,7 @@ from app.generation.service import generation_service
 from app.retrieval.service import retrieval_service
 from app.tools.schemas import ToolResult, ToolSource
 
+import os
 
 def build_training_query(
     question: str,
@@ -36,6 +37,62 @@ def build_training_query(
 
     return " ".join(query_parts)
 
+def build_deterministic_recommendation(
+    retrieved_results: list[dict],
+) -> str:
+    """
+    Format retrieved evidence into a concise, cited training plan.
+    """
+    sections = []
+
+    for result in retrieved_results:
+        source = result["source"]
+        text = result["text"].strip()
+
+        cleaned_lines = []
+
+        for line in text.splitlines():
+            stripped = line.strip()
+
+            if not stripped:
+                continue
+
+            if stripped.lower() in {
+                "## safety",
+                "## training and practice",
+                "## when it is useful",
+                "## common mistakes",
+            }:
+                continue
+
+            if stripped.startswith("#"):
+                continue
+
+            cleaned_lines.append(stripped)
+
+        cleaned_text = " ".join(cleaned_lines)
+
+        if not cleaned_text:
+            continue
+
+        sections.append(
+            f"### {source.removesuffix('.md').replace('_', ' ').title()}\n"
+            f"{cleaned_text}\n"
+            f"Source: [{source}]"
+        )
+
+    if not sections:
+        return (
+            "The retrieved evidence did not contain enough "
+            "information to create a training recommendation."
+        )
+
+    return (
+        "## Recommended Training Plan\n\n"
+        "Based on the retrieved climbing evidence, focus on the "
+        "following areas:\n\n"
+        + "\n\n".join(sections)
+    )
 
 def training_recommendation_tool(
     question: str,
@@ -100,11 +157,22 @@ def training_recommendation_tool(
             top_k=top_k,
         )
 
-        recommendation = generation_service.generate_answer(
-            query=retrieval_query,
-            retrieved_results=retrieved_results,
-            max_new_tokens=160,
+        generation_mode = os.getenv(
+            "CRUXAI_GENERATION_MODE",
+            "llm",
         )
+
+        if generation_mode == "deterministic":
+            recommendation = build_deterministic_recommendation(
+                retrieved_results
+            )
+        else:
+            recommendation = generation_service.generate_answer(
+                query=retrieval_query,
+                retrieved_results=retrieved_results,
+                max_new_tokens=160,
+            )
+                
 
         sources = [
             ToolSource(

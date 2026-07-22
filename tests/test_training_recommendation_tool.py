@@ -144,3 +144,38 @@ def test_training_query_does_not_invent_hold_types():
     assert "crimp" not in query.lower()
     assert "sloper" not in query.lower()
     assert "small edge" not in query.lower()
+    
+def test_build_deterministic_recommendation_formats_sources():
+    from app.tools.training_recommendation import (
+        build_deterministic_recommendation,
+    )
+
+    results = [
+        {
+            "source": "overhang_technique.md",
+            "text": (
+                "## Training and practice\n\n"
+                "Feet-on and feet-cut drills improve "
+                "body tension.\n\n"
+                "## Safety"
+            ),
+        },
+        {
+            "source": "power_endurance.md",
+            "text": (
+                "Repeating short hard circuits helps "
+                "develop power endurance."
+            ),
+        },
+    ]
+
+    recommendation = build_deterministic_recommendation(
+        results
+    )
+
+    assert "Recommended Training Plan" in recommendation
+    assert "Feet-on and feet-cut drills" in recommendation
+    assert "short hard circuits" in recommendation
+    assert "[overhang_technique.md]" in recommendation
+    assert "[power_endurance.md]" in recommendation
+    assert "## Safety" not in recommendation

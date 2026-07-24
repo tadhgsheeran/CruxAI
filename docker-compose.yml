@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cruxai-api
+    ports:
+      - "8000:8000"
+    environment:
+      CRUXAI_GENERATION_MODE: deterministic
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: cruxai-frontend
+    ports:
+      - "8501:8501"
+    environment:
+      CRUXAI_API_URL: http://api:8000
+    depends_on:
+      - api

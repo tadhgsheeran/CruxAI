@@ -27,6 +27,11 @@ from app.orchestration.workflow_schemas import (
     WorkflowRequest,
 )
 
+from app.orchestration.router import (
+    Intent,
+    route_request,
+)
+
 MIN_RETRIEVAL_SCORE = 0.35
 
 app = FastAPI(
@@ -34,7 +39,6 @@ app = FastAPI(
     description="API for predicting MoonBoard climbing grades.",
     version="1.0.0",
 )
-
 
 @app.get("/")
 def root():
@@ -44,10 +48,10 @@ def root():
 
 
 @app.get("/health")
-def health_check():
+def health_check() -> dict[str, str]:
     return {
         "status": "healthy",
-        "model_loaded": True,
+        "service": "CruxAI",
     }
 
 
@@ -73,35 +77,53 @@ def retrieve_climbing_knowledge(request: RetrievalRequest):
         "results": results,
     }
 
-@app.post("/ask", response_model=AskResponse)
-def ask_cruxai(request: AskRequest):
-    results = retrieval_service.search(
+@app.post(
+    "/ask",
+    response_model=AskResponse,
+)
+async def ask_question(
+    request: AskRequest,
+) -> AskResponse:
+    routing_decision = route_request(
+        request.query
+    )
+
+    if (
+        routing_decision.intent
+        == Intent.UNSUPPORTED_REQUEST
+    ):
+        return AskResponse(
+            query=request.query,
+            answer=(
+                "I do not have enough relevant information "
+                "in the climbing knowledge base to answer "
+                "that question."
+            ),
+            sources=[],
+        )
+
+    retrieved_results = retrieval_service.search(
         query=request.query,
         top_k=request.top_k,
     )
 
-    if not results or results[0]["score"] < MIN_RETRIEVAL_SCORE:
-        return {
-            "query": request.query,
-            "answer": (
-                "I do not have enough relevant information in the "
-                "CruxAI knowledge base to answer that question."
-            ),
-            "sources": [],
-        }
-
     answer = generation_service.generate_answer(
         query=request.query,
-        retrieved_results=results,
+        retrieved_results=retrieved_results,
     )
 
-    sources = [result["source"] for result in results]
+    source_names = list(
+        dict.fromkeys(
+            result["source"]
+            for result in retrieved_results
+        )
+    )
 
-    return {
-        "query": request.query,
-        "answer": answer,
-        "sources": sources,
-    }
+    return AskResponse(
+        query=request.query,
+        answer=answer,
+        sources=source_names,
+    )
 
 @app.post(
     "/route",

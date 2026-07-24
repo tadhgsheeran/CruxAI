@@ -1,0 +1,70 @@
+{
+  "mode": "fp32",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "device": "cpu",
+  "dtype": "float32",
+  "serialized_model_size_mb": 1884.690089225769,
+  "examples": 6,
+  "tokenizer_load_seconds": 0.7315040829125792,
+  "base_model_load_seconds": 2.0132527500391006,
+  "quantization_seconds": 0.0,
+  "total_load_seconds": 2.74475683295168,
+  "memory_before_load_mb": 486.515625,
+  "memory_after_load_mb": 2069.140625,
+  "model_memory_delta_mb": 1582.625,
+  "average_latency_seconds": 5.274303055523585,
+  "total_latency_seconds": 31.645818333141506,
+  "average_tokens_per_second": 13.429894450064294,
+  "mean_topic_coverage": 1.0,
+  "average_response_words": 59.5,
+  "examples_detail": [
+    {
+      "question": "How can I stop my feet from cutting loose on overhangs?",
+      "answer": "To stop your feet from cutting loose on overhangs, you should maintain precise feet, keep the hips close to the wall, and use body tension to keep the arms active and resistant to swinging.",
+      "topic_coverage": 1.0,
+      "latency_seconds": 3.7493863329291344,
+      "generated_tokens": 41,
+      "tokens_per_second": 10.93512280660861
+    },
+    {
+      "question": "What should I train for small crimps?",
+      "answer": "To train for small crimps, one should prioritize progressive edge hangs, repeaters, and carefully programmed maximum hangs. These techniques help develop finger strength necessary for gripping small edges effectively.",
+      "topic_coverage": 1.0,
+      "latency_seconds": 3.13698916696012,
+      "generated_tokens": 37,
+      "tokens_per_second": 11.79474905099995
+    },
+    {
+      "question": "How does a heel hook help during a climb?",
+      "answer": "A heel hook helps during a climb by pulling the body toward or around a hold, redistributing load from the fingers and arms into the posterior chain. It's especially useful on steep terrain, roofs, and ar\u00eates where staying attached to the wall requires full body tension from the upper body alone.",
+      "topic_coverage": 1.0,
+      "latency_seconds": 4.342145833186805,
+      "generated_tokens": 60,
+      "tokens_per_second": 13.818052710579865
+    },
+    {
+      "question": "How can I improve power endurance?",
+      "answer": "To improve your power endurance, focus on building muscle memory through regular workouts that target specific areas like the fingers, wrists, and hands. Incorporate progressive overload techniques, such as increasing the weight or difficulty level of your climbs progressively. Additionally, incorporate small edges and crimps into your routine to enhance grip strength and reduce the risk of injuries. Regularly rest and recover from your workouts to allow your muscles to fully recover and adapt.",
+      "topic_coverage": 1.0,
+      "latency_seconds": 5.443459167145193,
+      "generated_tokens": 87,
+      "tokens_per_second": 15.982484175706036
+    },
+    {
+      "question": "How should I recover after a hard climbing session?",
+      "answer": "To recover after a hard climbing session, start by ensuring adequate rest and recovery time. This includes proper nutrition, hydration, and sleep. After each session, take a break from climbing and engage in light activities like stretching, yoga, or walking to help your body recover. Gradually increase the intensity of your next session to maintain your fitness levels. Additionally, incorporating recovery techniques like deep breathing exercises and progressive muscle relaxation can enhance your recovery process. Remember, recovery is crucial for maintaining peak performance and preventing injuries",
+      "topic_coverage": 1.0,
+      "latency_seconds": 8.312874415889382,
+      "generated_tokens": 100,
+      "tokens_per_second": 12.029533347557633
+    },
+    {
+      "question": "How can I improve my route reading?",
+      "answer": "To improve your route reading, focus on improving your grip strength, movement accuracy, body tension, and decision-making skills. Use useful methods like linking sections of a problem, repeating short hard circuits, and practicing sequences that last longer than a single maximum effort move. Additionally, practice techniques like footwork, which involves balancing weight distribution, edge angle, hip proximity to the wall, and controlling the hips during execution. Remember to avoid common mistakes like adjusting the foot too quickly or using an incorrect edge, and",
+      "topic_coverage": 1.0,
+      "latency_seconds": 6.660963417030871,
+      "generated_tokens": 100,
+      "tokens_per_second": 15.01284329896156
+    }
+  ]
+}
